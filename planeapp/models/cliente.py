@@ -16,7 +16,7 @@ class Cliente(User):
 
     def get_absolute_url(self):
         '''
-        :return: Define a url de retorno após executar os metodos de Create ou Update
+        :return: Define a url de retorno após executar  os metodos de Create ou Update
         '''
         return reverse_lazy('cliente-detail', kwargs={'pk': self.pk})
 
@@ -28,7 +28,7 @@ class Cliente(User):
 
     def __unicode__(self):
         '''
-        
+
         :return: Define nome o unicode de exibição para o objeto
         '''
         return self.username

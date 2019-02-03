@@ -36,7 +36,7 @@ class Produto(models.Model):
 
     def __unicode__(self):
         '''
-        
+
         :return: Define nome o unicode de exibição para o objeto
         '''
         return self.nome
