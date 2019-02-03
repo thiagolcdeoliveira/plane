@@ -1,0 +1,16 @@
+
+.hidden.menu {
+  display: none;
+}
+
+
+article.ui.grid {
+    margin-top: auto;
+}
+
+
+.footer {
+    min-height: 15% !important;
+    margin-top: 2% !important;
+    color: white;
+}

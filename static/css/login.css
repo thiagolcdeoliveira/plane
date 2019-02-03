@@ -1,0 +1,18 @@
+body {
+      background-image: url("../image/banner.jpg");background-repeat: no-repeat, repeat;
+          background-size: cover;;
+
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+    .titulo{
+    color:#fff;
+    }
+
