@@ -5,6 +5,7 @@ from django.views.generic import *
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
 
+from planeapp.forms.produto import ProdutoForm
 from planeapp.models.cliente import Cliente
 from planeapp.models.produto import Produto
 

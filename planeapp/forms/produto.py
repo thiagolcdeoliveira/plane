@@ -4,7 +4,7 @@ from django.forms import forms
 from planeapp.models.produto import Produto
 
 
-class ClienteForm(forms.Form):
+class ProdutoForm(forms.Form):
     
     class Meta:
         model = Produto

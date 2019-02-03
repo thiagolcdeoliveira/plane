@@ -38,4 +38,4 @@ class Pedido(models.Model):
 
         :return: Define nome o unicode de exibição para o objeto
         '''
-        return self.k
+        return self.pk

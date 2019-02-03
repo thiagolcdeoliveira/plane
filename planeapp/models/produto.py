@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-from _decimal import Decimal
-
-from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
 
 class Produto(models.Model):
     '''
@@ -16,7 +11,7 @@ class Produto(models.Model):
     '''
 
     nome = models.CharField(max_length=100)
-    preco_unit = models.FloatField(validators={MinValueValidator(Decimal('0.01'))})
+    preco_unit = models.FloatField()
     multiplo = models.PositiveIntegerField(default=1,blank=True)
 
     class Meta:
