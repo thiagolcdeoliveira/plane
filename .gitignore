@@ -79,17 +79,6 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
-# dotenv
-.env
-
-# virtualenv
-.venv
-venv/
-ENV/
-
-# Spyder project settings
-.spyderproject
-.spyproject
 
 # Rope project settings
 .ropeproject
@@ -98,21 +87,9 @@ ENV/
 /site
 
 # mypy
-.mypy_cache/
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
-.idea/rango.iml
-.idea/workspace.xml
+
 db.sqlite3
 
-.idea
-/rangoapp/migrations/000*
-/.idea
-.idea/dataSources.local.xml
-.idea/dataSources/204f357d-73a4-42d5-bf69-6126e71c2821/_metadata_/metadata.values.at
-.idea/dataSources/204f357d-73a4-42d5-bf69-6126e71c2821/_src_/
-.idea/dataSources/204f357d-73a4-42d5-bf69-6126e71c2821/_staging_/
-.idea/dataSources/204f357d-73a4-42d5-bf69-6126e71c2821/storage.xml
+
 /.idea/*
 /.idea/
