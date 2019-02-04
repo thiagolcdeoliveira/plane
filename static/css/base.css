@@ -18,3 +18,7 @@ article.ui.grid {
 .ui.cards > .card > .image > img {
 height: 10em;
 }
+
+.errorlist{
+/*margin-left:-20%;*/
+}

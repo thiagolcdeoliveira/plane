@@ -6,18 +6,30 @@ from planeapp.models.produto import Produto
 
 
 class PedidoForm(ModelForm):
-
+    # produto = CharField(widget=HiddenInput())
     class Meta:
         model = Pedido
         # fields = "__all__"
         fields = ('preco_unit','quantidade',)
+    def clean_preco_unit(self):
+        valor = self.cleaned_data.get("preco_unit")
+        if  valor >= self.produto.preco_unit:
+            return valor
+        else:
+            raise forms.ValidationError("Esse produto deve ser vendido igual ou acima de  R$ %s" % self.produto.preco_unit)
+
+    def clean_quantidade(self):
+        quantidade = self.cleaned_data.get("quantidade")
+        if quantidade % self.produto.multiplo == 0 :
+            return quantidade
+        else:
+            raise forms.ValidationError("Esse produto só pode ser vendido por multiplos de %s" %self.produto.multiplo)
 
     def __init__(self, *args, **kwargs):
         produto_id = kwargs.pop('id')
         print(produto_id)
-        produto = Produto.objects.get(id=produto_id)
-
+        self.produto = Produto.objects.get(id=produto_id)
         super(PedidoForm, self).__init__(*args, **kwargs)
         # self.fields['produto'].queryset = Produto.objects.filter(id=produto_id)
-        self.fields['quantidade'].initial = produto.multiplo
-        self.fields['preco_unit'].initial = produto.preco_unit
+        self.fields['quantidade'].initial = self.produto.multiplo
+        self.fields['preco_unit'].initial = self.produto.preco_unit

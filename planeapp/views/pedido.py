@@ -54,6 +54,7 @@ class AjaxPedidoCreateView(View):
         data = {}
         form = PedidoForm(id=id)
         context['form'] =  form
+        context['titulo'] =  get_object_or_404(Produto,pk=self.kwargs.get("id"))
         context['url'] = reverse('pedido-produto-add',kwargs={"id":id})
 
         data['html_form'] = render_to_string(self.template_name_json, context, request=request)
@@ -88,8 +89,9 @@ class AjaxPedidoCreateView(View):
         data = dict()
         data['form_is_valid'] = False
         context['form'] = form
-        context['classe_css'] = 'pergunta_add'
-        context['titulo'] = 'Modelo de Artigo'
+        context['classe_css'] = 'pedido_add'
+        context['titulo'] =  get_object_or_404(Produto, pk=self.kwargs.get("id"))
+        context["url"] = reverse("pedido-produto-add", kwargs={"id":self.kwargs.get("id")})
         data['html_form'] = render_to_string(self.template_name_json, context, request=self.request)
         return JsonResponse(data)
 
