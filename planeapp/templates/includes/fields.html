@@ -1,0 +1,26 @@
+{% load staticfiles %}
+{% load i18n %}
+
+
+{% csrf_token %}
+{% for hidden in form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
+
+{% for field in form.visible_fields %}
+    <div class="field">
+        <label>{{ field.label|title }}: {% if field.field.required %}<i class="ui tiny red icon asterisk"></i>{% endif %}
+        </label>
+        {{ field }}
+        {% if field.help_text %}
+            <span class="ui pointing label">Ajuda:  {{ field.help_text }} </span>
+        {% endif %}
+
+        {% if field.errors %}
+            <span class="ui pointing red label">
+                   {{ field.errors }}
+               </span>
+        {% endif %}
+    </div>
+{% endfor %}
+

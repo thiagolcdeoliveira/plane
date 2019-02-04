@@ -4,19 +4,54 @@ from django.urls import reverse_lazy
 from django.views.generic import *
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.edit import FormMixin
 
+from planeapp.forms.pedido import PedidoForm
 from planeapp.forms.produto import ProdutoForm
 from planeapp.models.cliente import Cliente
 from planeapp.models.produto import Produto
 
 
-class ProdutoListView(LoginRequiredMixin, ListView):
+class ProdutoListView(LoginRequiredMixin,ListView):
     '''
      Lista todos os Produtos.
     :URl: http://ip_servidor/produto/listar/
     '''
+    model = Produto
+    form_class = PedidoForm
     queryset = Produto.objects.all()
 
+
+    def get_context_data(self,  object_list=None, **kwargs):
+        context = super(ProdutoListView,self).get_context_data(**kwargs)
+        # context["form"] = PedidoForm()
+        # context["form"] = PedidoForm(id=id)
+        # print(context)
+        # print(context['form'])
+        return context
+
+    # def get_success_url(self):
+    #     return reverse('author-detail', kwargs={'pk': self.object.pk})
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['form'] = self.get_form()
+    #     return context
+    #
+    # def post(self, request, *args, **kwargs):
+    #     if not request.user.is_authenticated:
+    #         return HttpResponseForbidden()
+    #     self.object = self.get_object()
+    #     form = self.get_form()
+    #     if form.is_valid():
+    #         return self.form_valid(form)
+    #     else:
+    #         return self.form_invalid(form)
+    #
+    # def form_valid(self, form):
+    #     # Here, we would record the user's interest using the message
+    #     # passed in form.cleaned_data['message']
+    #     return super().form_valid(form)
 
 class ProdutoDetailViews(LoginRequiredMixin, DetailView):
     '''

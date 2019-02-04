@@ -17,6 +17,7 @@ class Pedido(models.Model):
     #c
     cliente = models.ForeignKey(Cliente)
     quantidade = models.PositiveIntegerField(default=1)
+    preco_unit = models.DecimalField(decimal_places=2,max_digits=10)
 
     class Meta:
         verbose_name_plural = 'Pedidos'
@@ -38,4 +39,4 @@ class Pedido(models.Model):
 
         :return: Define nome o unicode de exibição para o objeto
         '''
-        return self.pk
+        return '%s' % self.pk

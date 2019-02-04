@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
+from django.urls import reverse_lazy, reverse
 from django.views.generic import *
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
-
+from planeapp.forms.pedido import PedidoForm
 from planeapp.models.cliente import Cliente
 from planeapp.models.pedido import Pedido
+from planeapp.models.produto import Produto
 
 
 class PedidoListView(LoginRequiredMixin, ListView):
@@ -40,6 +45,66 @@ class PedidoCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             cleaned_data,
             name=self.object.title,
         )
+
+class AjaxPedidoCreateView(View):
+    template_name_json = 'includes/form_json.html'
+
+    def get(self, request,id,**kwargs):
+        context = {}
+        data = {}
+        form = PedidoForm(id=id)
+        context['form'] =  form
+        context['url'] = reverse('pedido-produto-add',kwargs={"id":id})
+
+        data['html_form'] = render_to_string(self.template_name_json, context, request=request)
+        return JsonResponse(data)
+
+    def post(self, request,id):
+        print("oi")
+        form = PedidoForm(request.POST, request.FILES, id=id)
+        print(form)
+        if form.is_valid():
+            form = form.save(commit=False)
+            # form.cliente = Cliente.objects.get(username__pk=request.user.id)
+            # form.cliente = Cliente.objects.get(username__pk=3)
+            # form.cliente = Cliente.objects.get(username__id=3)
+            # form.cliente = Cliente.objects.get(username=3)
+            # form.cliente = Cliente.objects.get(username=3)
+            form.cliente = Cliente.objects.get(username='root1234')
+            # form.produto = Produto.objects.get(id=produto.id)
+            # form.produto = Produto.objects.get(id=produto.id)
+            # form.produto = Produto.objects.get(id=produto.id)
+            # form.produto = Produto.objects.get(id=.id)
+            form.produto = Produto.objects.get(id=id)
+            # form.cliente = Cliente.objects.get(username__pk=request.user.id)
+            return self.form_valid(form)
+        else:
+            print(form.errors)
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        context = {}
+        data = dict()
+        print("oi")
+        form.save()
+        pedido = get_object_or_404(Pedido, pk=form.pk)
+        data['form_is_valid'] = True
+        # context["pedido"] = pedido.produto.nome
+        # context["messages"] = get_success_message_ajax(PERGUNTA_CREATE,form.pk)
+        # data['html_content_message'] = render_to_string(self.template_message, context)
+        return JsonResponse(data)
+
+    def form_invalid(self, form):
+        context = {}
+        data = dict()
+        data['form_is_valid'] = False
+        context['form'] = form
+        context['classe_css'] = 'pergunta_add'
+        context['titulo'] = 'Modelo de Artigo'
+        data['html_form'] = render_to_string(self.template_name_json, context, request=self.request)
+        return JsonResponse(data)
+
+
 
 
 class PedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

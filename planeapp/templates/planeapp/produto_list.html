@@ -18,45 +18,78 @@ Lista de Produtos
 
 <section class="ui twelve wide column">
 
-
+  <!--{{form}}-->
   <div class="ui header"> <h2>  Lista de Produtos</h2></div>
 
 
-<div class="ui special cards">
-            {% for produto in object_list %}
+  <div class="ui special cards">
+    {% for produto in object_list %}
 
-  <div class="card">
-    <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="ui inverted button">Add Friend</div>
+    <div class="card">
+      <div class="blurring dimmable image">
+        <div class="ui dimmer">
+          <div class="content">
+            <div class="center">
+              <div class="ui inverted button">Add Friend</div>
+            </div>
           </div>
         </div>
+        <img src="/media/{{produto.imagem}}">
       </div>
-      <img src="/media/{{produto.imagem}}">
-    </div>
-    <div class="content">
-      <a class="header">{{produto.nome}}</a>
-      <div class="meta">
-        <span class="date">Preço Unitário: R${{produto.preco_unit}}</span>
+      <div class="content">
+        <a class="header">{{produto.nome}}</a>
+        <div class="meta">
+          <span class="date">Preço Unitário: R${{produto.preco_unit}}</span>
+        </div>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="users icon"></i>
+          {{produto.multiplo}}  Members
+        </a>
+      </div>
+      <div class="extra content">
+        <a>
+          <!--<button type="button" class="ui button button e-green-button js-create-object e-margin-top" onclick="abrir_modal({{produto.id}},{{produto.preco_unit}},{{produto.multiplo}},'{{produto.nome}}')">Adicionar ao Carrinho</>-->
+          <button type="button" class="ui button button e-green-button js-create-object e-margin-top" data-url="{%url 'pedido-produto-add' produto.id %}" > Adicionar ao Carrinho</button>
+        </a>
       </div>
     </div>
-    <div class="extra content">
-      <a>
-        <i class="users icon"></i>
-        {{produto.multiplo}}  Members
-      </a>
-    </div>
-    <div class="extra content">
-      <a>
 
-      <a class="ui button ">Adicionar ao Carrinho</a>
-      </a>
-    </div>
-  </div>
     {% endfor %}
-</div>
+
+
+    <div class="ui modal tiny pedido_add"  id="modal-object"></div>
+      <!--<div class="header" id="nome_produto">Header</div>-->
+
+      <!--&lt;!&ndash;{% include "includes/form.html"%}&ndash;&gt;-->
+
+      <!--<form class="ui form " action="{%url 'pedido-add'%}" method="post">-->
+        <!--<div class="ui grid ">-->
+          <!--<div class="ui ten wide column centered  ">-->
+            <!--&lt;!&ndash;<div class="description">&ndash;&gt;-->
+            <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
+            <!--{#&lt;!&ndash;{%form.as_p%}&ndash;&gt;#}-->
+            <!--&lt;!&ndash;<select class="ui hidden" name="produto" value=""></select>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input id="preco_unit" name="preco_unit" value=""/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input id="multiplo" name="multiplo" value=""/>&ndash;&gt;-->
+            <!--{% include "includes/fields.html"%}-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="ui five wide column">&ndash;&gt;-->
+            <!--<div class="ui actions">-->
+              <!--<a class="ui button deny cancel  ">Cancel</a>-->
+            <!--&lt;!&ndash;</div><div class="ui five wide column">&ndash;&gt;-->
+              <!--<button type="submit" class="ui button right" >OK</button></div>-->
+            <!--</div>-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</form>-->
+
+
+    <!--</div>-->
+  <!--</div>-->
 
 </section>
 {% endblock %}

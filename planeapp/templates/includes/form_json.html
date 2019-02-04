@@ -1,0 +1,14 @@
+<i class="close icon"></i>
+<div class="header e-blue-h">
+    Adicionar {{ titulo }}
+</div>
+<div class="content">
+    <form novalidate method="post" action="{{ url }}" class="js-object-create-form ui form {{ classe_css }}" id="form_ajax" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'includes/fields.html' %}
+    </form>
+</div>
+<div class="actions">
+    <button class="ui cancel black button e-red-button">Cancelar</button>
+    <button form="form_ajax" class="ui button e-green-button" value="Salvar">Salvar</button>
+</div>

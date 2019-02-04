@@ -1,0 +1,14 @@
+{% load staticfiles %}
+{% load i18n %}
+
+
+{{ message_success }}
+<form class="ui form warning" action="" method="post">
+
+    {% include 'includes/fields.html' %}
+    <div class="ui two buttons">
+        <a href="{{ request.META.HTTP_REFERER }}" class="ui button fluid ">{% trans "back"|title %}</a>
+        <input class="ui button fluid black" type="submit" value="{% trans "save"|title %}"/>
+    </div>
+</form>
+
