@@ -65,18 +65,8 @@ class AjaxPedidoCreateView(View):
         print(form)
         if form.is_valid():
             form = form.save(commit=False)
-            # form.cliente = Cliente.objects.get(username__pk=request.user.id)
-            # form.cliente = Cliente.objects.get(username__pk=3)
-            # form.cliente = Cliente.objects.get(username__id=3)
-            # form.cliente = Cliente.objects.get(username=3)
-            # form.cliente = Cliente.objects.get(username=3)
             form.cliente = Cliente.objects.get(username='root1234')
-            # form.produto = Produto.objects.get(id=produto.id)
-            # form.produto = Produto.objects.get(id=produto.id)
-            # form.produto = Produto.objects.get(id=produto.id)
-            # form.produto = Produto.objects.get(id=.id)
             form.produto = Produto.objects.get(id=id)
-            # form.cliente = Cliente.objects.get(username__pk=request.user.id)
             return self.form_valid(form)
         else:
             print(form.errors)
@@ -89,7 +79,6 @@ class AjaxPedidoCreateView(View):
         form.save()
         pedido = get_object_or_404(Pedido, pk=form.pk)
         data['form_is_valid'] = True
-        # context["pedido"] = pedido.produto.nome
         # context["messages"] = get_success_message_ajax(PERGUNTA_CREATE,form.pk)
         # data['html_content_message'] = render_to_string(self.template_message, context)
         return JsonResponse(data)

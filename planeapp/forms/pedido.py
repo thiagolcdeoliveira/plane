@@ -6,7 +6,6 @@ from planeapp.models.produto import Produto
 
 
 class PedidoForm(ModelForm):
-    # produto = CharField(widget=HiddenInput())
 
     class Meta:
         model = Pedido
