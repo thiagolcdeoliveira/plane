@@ -1,8 +1,8 @@
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
 <!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>Title</title>-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Title</title>-->
 <!--</head>-->
 <!--<body>-->
 
@@ -14,13 +14,49 @@
 Lista de Produtos
 {% endblock title_block %}
 {% load staticfiles %}
-{% block body_block %}frjj
-     <section class="ui ten wide column">
-     {% for produto in object_list %}
-         {{produto}}
-         fkfo4k
-         fç4lfplfpfp
-         k4pf
-     {% endfor %}
-     </section>
+{% block body_block %}
+
+<section class="ui twelve wide column">
+
+
+  <div class="ui header"> <h2>  Lista de Produtos</h2></div>
+
+
+<div class="ui special cards">
+            {% for produto in object_list %}
+
+  <div class="card">
+    <div class="blurring dimmable image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="ui inverted button">Add Friend</div>
+          </div>
+        </div>
+      </div>
+      <img src="/media/{{produto.imagem}}">
+    </div>
+    <div class="content">
+      <a class="header">{{produto.nome}}</a>
+      <div class="meta">
+        <span class="date">Preço Unitário: R${{produto.preco_unit}}</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        <i class="users icon"></i>
+        {{produto.multiplo}}  Members
+      </a>
+    </div>
+    <div class="extra content">
+      <a>
+
+      <a class="ui button ">Adicionar ao Carrinho</a>
+      </a>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+
+</section>
 {% endblock %}

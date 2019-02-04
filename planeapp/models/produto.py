@@ -13,6 +13,7 @@ class Produto(models.Model):
     nome = models.CharField(max_length=100)
     preco_unit = models.FloatField()
     multiplo = models.PositiveIntegerField(default=1,blank=True)
+    imagem = models.ImageField(upload_to="produto",blank=True)
 
     class Meta:
         verbose_name_plural = 'Produtos'

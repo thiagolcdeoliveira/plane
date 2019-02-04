@@ -14,3 +14,7 @@ article.ui.grid {
     margin-top: 2% !important;
     color: white;
 }
+
+.ui.cards > .card > .image > img {
+height: 10em;
+}
