@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+Lista de Produtos
+{% endblock title_block %}
+{% load staticfiles %}
+{% block body_block %}
+<section class="ui ten wide column">
+
+<!--{%include "includes/form.html"%}-->
+    <form class="ui large form" action="" method="POST">
+      <div class="ui stacked segment">
+          <!--{{form.errors}}-->
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="email" placeholder="E-mail">
+          </div> {% if form.username.errors %}
+            <span class="ui pointing red label">
+                   {{ form.username.errors }}
+               </span>
+        {% endif %}
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Senha">
+          </div> {% if form.username.errors %}
+            <span class="ui pointing red label">
+                   {{ form.username.errors }}
+               </span>
+        {% endif %}
+        </div>
+          {%csrf_token%}
+               <input class="ui fluid large teal submit button" type="submit" value="Login">
+      <div class="ui error message"></div>
+  </div>
+    </form>
+<div class="ui message">
+      Novo Usuário? <a href="{%url 'cliente-add'%}">Cadastre-se</a>
+    </div>
+
+</section>
+{% endblock %}
