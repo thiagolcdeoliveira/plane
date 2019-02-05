@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from django.views.generic import *
@@ -21,6 +21,10 @@ class PedidoListView(LoginRequiredMixin, ListView):
     queryset = Pedido.objects.all()
 
 class PedidoAtivoPorUsuarioListView(LoginRequiredMixin, ListView):
+    '''
+    Lista todos os Pedido ativos.
+    :URl: http://ip_servidor/pedidos/listar/
+    '''
     queryset = Pedido.objects.filter()
     def get_queryset(self):
         user =  self.request.user
@@ -40,7 +44,7 @@ class PedidoDetailViews(LoginRequiredMixin, DetailView):
     '''
     model = Pedido
 
-
+#Não Implementado
 class PedidoCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     '''
      Adiciona um pedido.
@@ -58,6 +62,10 @@ class PedidoCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         )
 
 class AjaxPedidoCreateView(View):
+    '''
+    Adiciona um pedido via AJAX.
+    :URl: http://ip_servidor/pedido/cadastrar/
+    '''
     template_name_json = 'includes/form_json.html'
 
     def get(self, request,id,**kwargs):
@@ -103,11 +111,11 @@ class AjaxPedidoCreateView(View):
 
 
 
-
+# Não Implentado
 class PedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     '''
-     Atualiza um Cliente.
-    :URl: http://ip_servidor/pedido/listar/
+     Atualiza um pedido.
+    :URl: http://ip_servidor/pedido/<id>/atualizar
     '''
     model = Pedido
     form_class = PedidoForm
@@ -123,7 +131,7 @@ class PedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class PedidoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     '''
-     Deletar uma página.
+     Deleta um pedido do carrinho.
     :URl: http://ip_servidor/pedido/<pk>/excluir
     '''
     success_message = _("Pedido %(name)s deletado com sucesso!")
@@ -149,8 +157,8 @@ class PedidoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
 class PedidoFinalizarView(LoginRequiredMixin, SuccessMessageMixin, View):
     '''
-     Deletar uma página.
-    :URl: http://ip_servidor/pedido/<pk>/excluir
+     Finaliza  o carrinho  do usuário.
+    :URl: http://ip_servidor/carrinho/finalizar
     '''
     success_message = "Pedido finalizado com sucesso!"
     queryset = Pedido.objects.all()
@@ -158,17 +166,14 @@ class PedidoFinalizarView(LoginRequiredMixin, SuccessMessageMixin, View):
     def get(self,request, *args, **kwargs):
         pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username="root1234")
         for object in pedidos:
-            # self.object.finalizado = True
-            # self.object.save()
             object.finalizado = True
             object.save()
-        # return reverse_lazy('produto-list')
         return redirect(reverse('produto-list'))
 
 class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
     '''
-     Deletar uma página.
-    :URl: http://ip_servidor/pedido/<pk>/excluir
+     Limpa o carrinho do usuário logado.
+    :URl: http://ip_servidor/carrinho/limpar
     '''
     success_message = "Carrinho limpo com sucesso!"
     queryset = Pedido.objects.all()
@@ -182,8 +187,8 @@ class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
 
 class PedidoComprarView(LoginRequiredMixin, SuccessMessageMixin, View):
     '''
-     Deletar uma página.
-    :URl: http://ip_servidor/pedido/<pk>/excluir
+     Comprar item isolado de um carrinho.
+    :URl: http://ip_servidor/produto/<id>/comprar
     '''
     success_message = "Produto Comprado com sucesso!"
     def get(self,request,id, *args, **kwargs):
