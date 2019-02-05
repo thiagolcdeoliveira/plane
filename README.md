@@ -2,6 +2,11 @@
 Projeto de uma aplicação de pedidos
 
 ## Requisitos
+**Uma aplicação web simulando de forma simplificada a emissão de pedidos.
+
+**O usuário desta aplicação poderá criar novos pedidos e alterar os pedidos existentes.
+Portanto, é indispensável que estas informações sejam armazenadas de forma
+persistente.
 
 ## Regras de negócio
 
