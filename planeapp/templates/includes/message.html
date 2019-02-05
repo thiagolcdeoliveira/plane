@@ -1,0 +1,9 @@
+{% load i18n%}
+
+1{% if messages%}
+<div class="ui message positive">
+{%for message in messages%}
+    {{message}}
+  {%endfor%}
+</div>
+{%endif%}
