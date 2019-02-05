@@ -1,6 +1,6 @@
 <i class="close icon"></i>
 <div class="header e-blue-h">
-    Adicionar {{ titulo }} ao carrinho
+    {%if editado %}Editar Pedido {%else%}Adicionar {{ titulo }} ao carrinho{%endif%}
 </div>
 <div class="content">
     <form novalidate method="post" action="{{ url }}" class="js-object-create-form ui form {{ classe_css }}" id="form_ajax" enctype="multipart/form-data">

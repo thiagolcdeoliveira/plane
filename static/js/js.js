@@ -77,8 +77,20 @@ $(function () {
 //            console.log(data.html_mensagem)
                     $("#modal-object").modal("hide");
 
-                    $("#messagem").html(data.html_mensagem);
 
+                    $("#mensagem").html(data.html_mensagem);
+                    if (data.editado){
+//                         alert("pedido_"+data.pedido+"_quantidade_produto")
+//                         alert("#pedido_"+data.pedido+"_preco_produto")
+                        $("#pedido_"+data.pedido+"_quantidade").text(data.quantidade);
+                        $("#pedido_"+data.pedido+"_preco_produto").text(data.preco);
+                        $("#pedido_"+data.pedido+"_valor_por_produto").text(data.preco*data.quantidade);
+                        $("#valor_total").html(data.total);
+
+                    }
+                   if(data.carrinho){
+                    $("#carrinho").val(data.carrinho)
+                    }
                 } else {
                     $("#modal-object").modal("hide");
                     $("#modal-object").html(data.html_form);

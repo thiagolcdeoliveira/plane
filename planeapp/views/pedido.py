@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
@@ -97,6 +99,7 @@ class AjaxPedidoCreateView(View):
         context = {}
         form.save()
         data['form_is_valid'] = True
+        data["carrinho"] = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username='root1234').count()
         data['html_mensagem'] = render_to_string(self.template_mensagem, context, request=self.request)
         return JsonResponse(data)
 
@@ -111,6 +114,62 @@ class AjaxPedidoCreateView(View):
         data['html_form'] = render_to_string(self.template_name_json, context, request=self.request)
         return JsonResponse(data)
 
+class AjaxPedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    '''
+     Atualiza um pedido.
+    :URl: http://ip_servidor/pedido/<id>/atualizar
+    '''
+    template_name_json = 'includes/form_json.html'
+    template_mensagem = 'includes/mensagem_json.html'
+
+    def get(self, request, id, **kwargs):
+        context = {}
+        data = {}
+        pedido= Pedido.objects.get(id=id)
+        form = PedidoForm(id=pedido.produto.id,instance=pedido)
+        context['form'] = form
+        context['titulo'] = get_object_or_404(Pedido, pk=self.kwargs.get("id"))
+        context['editado'] = True
+        context['url'] = reverse('pedido-editar', kwargs={"id": id})
+        data['html_form'] = render_to_string(self.template_name_json, context, request=request)
+        return JsonResponse(data)
+
+    def post(self, request, id):
+        pedido= Pedido.objects.get(id=id)
+        form = PedidoForm(request.POST, request.FILES,id=pedido.produto.id,instance=pedido)
+        if form.is_valid():
+            form = form.save(commit=False)
+            return self.form_valid(form)
+        else:
+            print(form.errors)
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        data = dict()
+        context = {}
+        form.save()
+        data['form_is_valid'] = True
+        data['editado'] = True
+        context['editado'] = True
+        pedido = Pedido.objects.get(id=self.kwargs.get("id"))
+        data['pedido'] = pedido.id
+        data['quantidade'] = pedido.quantidade
+        data['preco'] = pedido.preco_unit
+        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username='root1234')
+        data['total'] =  sum(valor for valor in [pedido.quantidade * pedido.preco_unit for pedido in pedidos ])
+        data['html_mensagem'] = render_to_string(self.template_mensagem, context, request=self.request)
+        return JsonResponse(data)
+
+    def form_invalid(self, form):
+        context = {}
+        data = dict()
+        data['form_is_valid'] = False
+        context['form'] = form
+        context['classe_css'] = 'pedido_editar'
+        context['titulo'] = get_object_or_404(Pedido, pk=self.kwargs.get("id"))
+        context["url"] = reverse("pedido-editar", kwargs={"id": self.kwargs.get("id")})
+        data['html_form'] = render_to_string(self.template_name_json, context, request=self.request)
+        return JsonResponse(data)
 
 
 # Não Implentado
@@ -171,7 +230,7 @@ class PedidoFinalizarView(LoginRequiredMixin, SuccessMessageMixin, View):
         for object in pedidos:
             object.finalizado = True
             object.save()
-            messages.success(self.request, self.success_message)
+        messages.success(self.request, self.success_message)
         return redirect(reverse('produto-list'))
 
 class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
@@ -187,7 +246,7 @@ class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
         for object in pedidos:
             object.desativado = True
             object.save()
-            messages.success(self.request, self.success_message)
+        messages.success(self.request, self.success_message)
         return redirect(reverse('produto-list'))
 
 class PedidoComprarView(LoginRequiredMixin, SuccessMessageMixin, View):

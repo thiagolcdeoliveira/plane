@@ -29,10 +29,10 @@ class PedidoForm(ModelForm):
             raise forms.ValidationError("Esse produto só pode ser vendido por multiplos de %s" %self.produto.multiplo)
 
     def __init__(self, *args, **kwargs):
-        produto_id = kwargs.pop('id')
-        print(produto_id)
-        self.produto = Produto.objects.get(id=produto_id)
-        super(PedidoForm, self).__init__(*args, **kwargs)
-        # self.fields['produto'].queryset = Produto.objects.filter(id=produto_id)
-        self.fields['quantidade'].initial = self.produto.multiplo
-        self.fields['preco_unit'].initial = self.produto.preco_unit
+        if 'id' in kwargs:
+            produto_id = kwargs.pop('id')
+            self.produto = Produto.objects.get(id=produto_id)
+            super(PedidoForm, self).__init__(*args, **kwargs)
+            self.fields['quantidade'].initial = self.produto.multiplo
+            self.fields['preco_unit'].initial = self.produto.preco_unit
+

@@ -54,7 +54,7 @@
                 <a href="{%url 'cliente-add' %}" class="ui item primary button">Cadastrar-se</a>
             <!--</div>-->
              <!--<div class="item">-->
-                <a class="item" href="{%url 'logout'%}" class="ui item button">Login</a>
+                <a class="item" href="{%url 'logout'%}" class="ui item button">Logout</a>
             <!--</div>-->
         </div>
     </div>
@@ -71,7 +71,7 @@
                     <a class="item" href="{% url 'login'%}">Login</a>
                 <!--</div>-->
             <!--<div class="item">-->
-                    <a class="item" href="{% url 'logout'%}">Login</a>
+                    <a class="item" href="{% url 'logout'%}">Logout</a>
                 <!--</div>-->
                 <!--<div class="item">-->
                     <a class="item" href="{% url 'cliente-add'%}" >Cadastrar-se</a>
@@ -98,13 +98,13 @@
                             <a  href="{%url 'login' %}" class="ui item button">Login</a>
                         <!--</div>-->
                            <!--<div class="item">-->
-                            <a  href="{%url 'logout' %}" class="ui item button">Login</a>
+                            <a  href="{%url 'logout' %}" class="ui item button">Logout</a>
                         <!--</div>-->
                         <!--<div class="item">-->
                             <a  href="{%url 'cliente-add'%}" class="ui item  primary button">Cadastrar-se</a>
                         <!--</div>-->
                         <!--<div class="item">-->
-                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button">{{ request.user.username|carrinho }}Carrinho</a>
+                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><div id="carrinho" class="carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
                         <!--</div>-->
                     </div>
                 </div>

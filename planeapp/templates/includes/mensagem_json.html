@@ -2,7 +2,7 @@
 
 <div class="ui message positive">
       <i class="close icon"></i>
-    Produto adicionado ao Carrinho!
+    Produto {%if editado %} editado {%else%}adicionado ao Carrinho!{%endif%}
 </div>
 <script>
 $('.message .close')
