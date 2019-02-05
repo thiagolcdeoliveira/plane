@@ -30,7 +30,7 @@ Lista de Produtos
         <div class="ui dimmer">
           <div class="content">
             <div class="center">
-              <div class="ui inverted button">Add Friend</div>
+              <a class="ui inverted js-create-object button" data-url="{%url 'pedido-produto-add' produto.id %}" >Adicionar ao Carrinho</a>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@ Lista de Produtos
       <div class="extra content">
         <a>
           <!--<button type="button" class="ui button button e-green-button js-create-object e-margin-top" onclick="abrir_modal({{produto.id}},{{produto.preco_unit}},{{produto.multiplo}},'{{produto.nome}}')">Adicionar ao Carrinho</>-->
-          <button type="button" class="ui button button e-green-button js-create-object e-margin-top" data-url="{%url 'pedido-produto-add' produto.id %}" > Adicionar ao Carrinho</button>
+          <button type="button" class="ui button button e-green-button js-create-object e-margin-top fluid attached" data-url="{%url 'pedido-produto-add' produto.id %}" > Adicionar ao Carrinho</button>
         </a>
       </div>
     </div>

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.forms import forms, ModelForm, CharField, HiddenInput
+from django.forms import forms, ModelForm, CharField, HiddenInput, IntegerField, DecimalField
 
 from planeapp.models.pedido import Pedido
 from planeapp.models.produto import Produto
@@ -7,6 +7,9 @@ from planeapp.models.produto import Produto
 
 class PedidoForm(ModelForm):
     # produto = CharField(widget=HiddenInput())
+    quantidade = IntegerField(min_value=1,label="Quantidade", help_text="Você deve colocar a quantidade desse produto que deseja.")
+    preco_unit = DecimalField(min_value=0,label="Preço Unitário", help_text="Valor que deseja pagar por unidade.")
+
     class Meta:
         model = Pedido
         # fields = "__all__"
