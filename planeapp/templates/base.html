@@ -42,16 +42,19 @@
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu ">
     <div class="ui container ">
-        <a class="active item">Home</a>
+        <a href="{%url 'home'%}" class="active item">Home</a>
 
 
         <div class="right menu">
-            <div class="item">
-                <a href="{%url 'login'%}" class="ui button">Login</a>
-            </div>
-            <div class="item">
-                <a href="{%url 'cliente-add' %}" class="ui primary button">Cadastrar-se</a>
-            </div>
+            <!--<div class="item">-->
+                <a   href="{%url 'login'%}" class="ui item button">Login</a>
+            <!--</div>-->
+            <!--<div class="item">-->
+                <a href="{%url 'cliente-add' %}" class="ui item primary button">Cadastrar-se</a>
+            <!--</div>-->
+             <!--<div class="item">-->
+                <a class="item" href="{%url 'logout'%}" class="ui item button">Login</a>
+            <!--</div>-->
         </div>
     </div>
 </div>
@@ -62,16 +65,19 @@
             <a class="toc item">
                     <i class="sidebar icon"></i>
                 </a>
-            <a class="active item">Home</a>
-                <div class="item">
-                    <a href="{% url 'login'%}">Login</a>
-                </div>
-                <div class="item">
-                    <a href="{% url 'cliente-add'%}" >Cadastrar-se</a>
-                </div>
-            <div class="item">
-                    <a href="{%url 'carrinho-list'%}">Carrinho</a>
-                </div>
+            <a href="{%url 'home'%}" class="active item">Home</a>
+                <!--<div class="item">-->
+                    <a class="item" href="{% url 'login'%}">Login</a>
+                <!--</div>-->
+            <!--<div class="item">-->
+                    <a class="item" href="{% url 'logout'%}">Login</a>
+                <!--</div>-->
+                <!--<div class="item">-->
+                    <a class="item" href="{% url 'cliente-add'%}" >Cadastrar-se</a>
+                <!--</div>-->
+            <!--<div class="item">-->
+                    <a class="item" href="{%url 'carrinho-list'%}">Carrinho</a>
+                <!--</div>-->
 
         </div>
 </div>
@@ -85,17 +91,20 @@
                     <i class="sidebar icon"></i>
                 </a>
                 <div class="ui container ">
-                    <a class="active item">Home</a>
+                    <a href="{%url 'home'%}" class="active item">Home</a>
                     <div class="right menu">
-                        <div class="item">
-                            <a href="{%url 'login' %}" class="ui button">Login</a>
-                        </div>
-                        <div class="item">
-                            <a href="{%url 'cliente-add'%}" class="ui primary button">Cadastrar-se</a>
-                        </div>
-                        <div class="item">
-                        <a href="{%url 'carrinho-list'%}" class="ui primary button">{{ request.user.username|carrinho }}Carrinho</a>
-                        </div>
+                        <!--<div class="item">-->
+                            <a  href="{%url 'login' %}" class="ui item button">Login</a>
+                        <!--</div>-->
+                           <!--<div class="item">-->
+                            <a  href="{%url 'logout' %}" class="ui item button">Login</a>
+                        <!--</div>-->
+                        <!--<div class="item">-->
+                            <a  href="{%url 'cliente-add'%}" class="ui item  primary button">Cadastrar-se</a>
+                        <!--</div>-->
+                        <!--<div class="item">-->
+                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button">{{ request.user.username|carrinho }}Carrinho</a>
+                        <!--</div>-->
                     </div>
                 </div>
             </div>

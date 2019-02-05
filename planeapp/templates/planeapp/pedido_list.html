@@ -6,7 +6,11 @@ Lista de Produtos
 {% endblock title_block %}
 {% load system staticfiles %}
 {% block body_block %}frjj
-<section class="ui ten wide column">
+<section class="ui ten wide column"> <div class="ui segment">
+    <div class=" header">
+        <a class="ui ribbon black label"> <h2>Carrinho </h2></a>
+
+    </div>
     {% if object_list%} <table class="ui striped table">
         <thead>
         <tr>
@@ -46,5 +50,6 @@ Lista de Produtos
   Você não possui nenhum item no seu carrinho. Aproveite e compre alguns produtos aqui.
 </div>
     {%endif%}
+</div>
 </section>
 {% endblock %}

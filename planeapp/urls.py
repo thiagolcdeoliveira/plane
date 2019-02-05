@@ -7,8 +7,9 @@ from planeapp.views.pedido import PedidoCreateView, AjaxPedidoCreateView, Pedido
 from planeapp.views.produto import ProdutoListView
 
 urlpatterns=[
-    url(r'^$', ProdutoListView.as_view(), name='produto-list'),
-    url(r'^$', PedidoCreateView.as_view(), name='pedido-add'),
+    url(r'^$', ProdutoListView.as_view(), name='home'),
+    url(r'produto/listar^$', ProdutoListView.as_view(), name='produto-list'),
+    # url(r'^$', PedidoCreateView.as_view(), name='pedido-add'),
     url(r'pedido/produto/(?P<id>[\d\-]+)/$', AjaxPedidoCreateView.as_view(), name='pedido-produto-add'),
     url(r'carrinho/$', PedidoAtivoPorUsuarioListView.as_view(), name='carrinho-list'),
     url(r'carrinho/produto/(?P<pk>[\d\-]+)/excluir$', PedidoDeleteView.as_view(), name='carrinho-produto-excluir'),

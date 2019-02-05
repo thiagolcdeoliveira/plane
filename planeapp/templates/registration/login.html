@@ -5,31 +5,42 @@ Lista de Produtos
 {% endblock title_block %}
 {% load staticfiles %}
 {% block body_block %}
+<section class="ui ten wide center grid aligned column">
 <section class="ui ten wide column">
 
-<!--{%include "includes/form.html"%}-->
+    <h2 class="ui teal image header">
+      <div class="content ">
+        Login
+      </div>
+    </h2>
     <form class="ui large form" action="" method="POST">
       <div class="ui stacked segment">
-          <!--{{form.errors}}-->
+          {% if form.username.errors %}
+          <div class="ui  message negative">
+              Dados incorretos!
+          </div>
+          {%endif%}
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail">
-          </div> {% if form.username.errors %}
-            <span class="ui pointing red label">
-                   {{ form.username.errors }}
-               </span>
-        {% endif %}
+            <input type="text" name="username" placeholder="Username">
+          </div>
+            <!--{% if form.username.errors %}-->
+            <!--<span class="ui pointing red label">-->
+                   <!--{{ form.username.errors }}-->
+               <!--</span>-->
+        <!--{% endif %}-->
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
             <input type="password" name="password" placeholder="Senha">
-          </div> {% if form.username.errors %}
-            <span class="ui pointing red label">
-                   {{ form.username.errors }}
-               </span>
-        {% endif %}
+          </div>
+            <!--{% if form.username.errors %}-->
+            <!--<span class="ui pointing red label">-->
+                   <!--{{ form.username.errors }}-->
+               <!--</span>-->
+        <!--{% endif %}-->
         </div>
           {%csrf_token%}
                <input class="ui fluid large teal submit button" type="submit" value="Login">

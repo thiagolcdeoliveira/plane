@@ -16,11 +16,13 @@ Lista de Produtos
 {% load staticfiles %}
 {% block body_block %}
 
-<section class="ui twelve wide column">
-  <div class="ui header"> <h2>  Lista de Produtos</h2></div>
+<section class="ui twelve wide column"> <div class="ui segment">
+  <div class="header">
+  <a class="ui ribbon black label"> <h2>  Lista de Produtos</h2></a>
+</div>
   <div class="ui special cards">
     {% for produto in object_list %}
-    <div class="card">
+    <div class="card attached">
       <div class="blurring dimmable image">
         <div class="ui dimmer">
           <div class="content">
@@ -55,5 +57,6 @@ Lista de Produtos
 
 
     <div class="ui modal tiny pedido_add"  id="modal-object"></div>
+  </div>
 </section>
 {% endblock %}
