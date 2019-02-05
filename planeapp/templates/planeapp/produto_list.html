@@ -17,14 +17,9 @@ Lista de Produtos
 {% block body_block %}
 
 <section class="ui twelve wide column">
-
-  <!--{{form}}-->
   <div class="ui header"> <h2>  Lista de Produtos</h2></div>
-
-
   <div class="ui special cards">
     {% for produto in object_list %}
-
     <div class="card">
       <div class="blurring dimmable image">
         <div class="ui dimmer">
@@ -60,36 +55,5 @@ Lista de Produtos
 
 
     <div class="ui modal tiny pedido_add"  id="modal-object"></div>
-      <!--<div class="header" id="nome_produto">Header</div>-->
-
-      <!--&lt;!&ndash;{% include "includes/form.html"%}&ndash;&gt;-->
-
-      <!--<form class="ui form " action="{%url 'pedido-add'%}" method="post">-->
-        <!--<div class="ui grid ">-->
-          <!--<div class="ui ten wide column centered  ">-->
-            <!--&lt;!&ndash;<div class="description">&ndash;&gt;-->
-            <!--&lt;!&ndash;<p></p>&ndash;&gt;-->
-            <!--{#&lt;!&ndash;{%form.as_p%}&ndash;&gt;#}-->
-            <!--&lt;!&ndash;<select class="ui hidden" name="produto" value=""></select>&ndash;&gt;-->
-            <!--&lt;!&ndash;<input id="preco_unit" name="preco_unit" value=""/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<input id="multiplo" name="multiplo" value=""/>&ndash;&gt;-->
-            <!--{% include "includes/fields.html"%}-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="ui five wide column">&ndash;&gt;-->
-            <!--<div class="ui actions">-->
-              <!--<a class="ui button deny cancel  ">Cancel</a>-->
-            <!--&lt;!&ndash;</div><div class="ui five wide column">&ndash;&gt;-->
-              <!--<button type="submit" class="ui button right" >OK</button></div>-->
-            <!--</div>-->
-              <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</form>-->
-
-
-    <!--</div>-->
-  <!--</div>-->
-
 </section>
 {% endblock %}
