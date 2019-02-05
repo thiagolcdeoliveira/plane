@@ -19,6 +19,7 @@ Lista de Produtos
             <th>Quantidade</th>
             <th>Preço Total</th>
             <th>Excluir do  Carrinho</th>
+            <th>Comprar Item Isolado</th>
         </tr>
         </thead>
         <tbody>
@@ -28,20 +29,23 @@ Lista de Produtos
             <td>
                 <!--<img class="ui image mini" src="{% static 'image/eliot.jpg' %}">-->
                 <!--<img class="ui image mini" src="{% static pedido.produto.imagem %}">-->
-               <div class="ui content">{{pedido.produto.nome}}</div>
+               <!--<div class="ui content">-->
+                   {{pedido.produto.nome}}
+<!--</div>-->
             </td>
             <td>{{pedido.preco_unit}} </td>
             <td>{{pedido.quantidade}}</td>
             <!--<td>{{pedido.preco_unit}} * {{pedido.quantidade }}</td>-->
             <td>{{pedido.preco_unit|multiplica:pedido.quantidade }}</td>
             <td><a href="{%url 'carrinho-produto-excluir' pedido.id%}" class="ui button red">Excluir</a></td>
+            <td><a href="{%url 'produto-comprar' pedido.id%}" class="ui button red">Comprar</a></td>
         </tr> {% endfor %}
         <tr>
             <td colspan="4">Valor total</td>
             <td colspan="2"> {{valor_total}} </td>
         </tr><tr>
-            <td colspan="3">Limpar Carrinho</td>
-            <td colspan="3"><a href="{%url 'carrinho-finalizar'%}"> Finalizar Pedido</a> </td>
+            <td colspan="3"><a class="ui button fluid black" href="{% url 'carrinho-limpar'%}">  Limpar Carrinho</a></td>
+            <td colspan="3"><a class="ui button fluid " href="{%url 'carrinho-finalizar'%}"> Finalizar Pedido</a> </td>
         </tr>
         </tbody>
     </table>
