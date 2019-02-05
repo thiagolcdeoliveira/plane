@@ -68,6 +68,7 @@ class AjaxPedidoCreateView(View):
     :URl: http://ip_servidor/pedido/cadastrar/
     '''
     template_name_json = 'includes/form_json.html'
+    template_mensagem = 'includes/mensagem_json.html'
 
     def get(self, request,id,**kwargs):
         context = {}
@@ -81,9 +82,7 @@ class AjaxPedidoCreateView(View):
         return JsonResponse(data)
 
     def post(self, request,id):
-        print("oi")
         form = PedidoForm(request.POST, request.FILES, id=id)
-        print(form)
         if form.is_valid():
             form = form.save(commit=False)
             form.cliente = Cliente.objects.get(username='root1234')
@@ -95,8 +94,10 @@ class AjaxPedidoCreateView(View):
 
     def form_valid(self, form):
         data = dict()
+        context = {}
         form.save()
         data['form_is_valid'] = True
+        data['html_mensagem'] = render_to_string(self.template_mensagem, context, request=self.request)
         return JsonResponse(data)
 
     def form_invalid(self, form):

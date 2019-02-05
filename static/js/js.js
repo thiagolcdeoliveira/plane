@@ -71,20 +71,13 @@ $(function () {
             type: form.attr("method"),
             dataType: 'json',
             success: function (data) {
-//            console.log(data)
+//            console.log(data.html_mensagem)
                 if (data.form_is_valid) {
-
-                    // ATUALIZAR LISTA
-//                    $(data.id_list).append(data.new_option);
-
-                    // SE A LISTA FOR UM SELECT DO SEMANTIC
-//                    if (data.new_option_anchor) {
-//                        $(data.id_list).next().after(data.new_option_anchor);
-//                    }
-
-                    // MENSAGEM DE SUCESSO NO MODAL
-                    $("#modal-object").html(data.html_content_message);
+//            console.log("oi")
+//            console.log(data.html_mensagem)
                     $("#modal-object").modal("hide");
+
+                    $("#messagem").html(data.html_mensagem);
 
                 } else {
                     $("#modal-object").modal("hide");

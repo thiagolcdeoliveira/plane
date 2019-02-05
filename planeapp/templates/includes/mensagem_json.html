@@ -1,13 +1,9 @@
 {% load staticfiles i18n%}
 
-{% if messages%}
 <div class="ui message positive">
       <i class="close icon"></i>
-   {%for message in messages%}
-    {{message}}
-  {%endfor%}
+    Produto adicionado ao Carrinho!
 </div>
-{%endif%}
 <script>
 $('.message .close')
   .on('click', function() {
