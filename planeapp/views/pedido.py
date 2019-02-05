@@ -21,6 +21,11 @@ class PedidoListView(LoginRequiredMixin, ListView):
     '''
     queryset = Pedido.objects.all()
 
+class PedidoAtivoPorUsuarioListView(LoginRequiredMixin, ListView):
+    queryset = Pedido.objects.filter()
+    def get_queryset(self):
+        user =  self.request.user
+        return self.queryset.filter(desativado=False,finalizado=False,cliente__username=user)
 
 class PedidoDetailViews(LoginRequiredMixin, DetailView):
     '''
