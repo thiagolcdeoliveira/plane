@@ -5,13 +5,13 @@
 Lista de Produtos
 {% endblock title_block %}
 {% load system staticfiles %}
-{% block body_block %}frjj
+{% block body_block %}
 <section class="ui ten wide column"> <div class="ui segment">
     <div class=" header">
         <a class="ui ribbon black label"> <h2>Carrinho </h2></a>
 
     </div>
-    {% include  "includes/message.html"%}"
+    {% include  "includes/message.html"%}
     {% if object_list%} <table class="ui striped table">
         <thead>
         <tr>

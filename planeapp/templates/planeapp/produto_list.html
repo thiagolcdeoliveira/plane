@@ -20,6 +20,7 @@ Lista de Produtos
   <div class="header">
   <a class="ui ribbon black label"> <h2>  Lista de Produtos</h2></a>
 </div>
+  {%include "includes/message.html"%}
   <div class="ui special cards">
     {% for produto in object_list %}
     <div class="card attached">
@@ -55,8 +56,7 @@ Lista de Produtos
 
     {% endfor %}
 
-
     <div class="ui modal tiny pedido_add"  id="modal-object"></div>
-  </div>
+  </div>{%include "includes/paginete.html"%}
 </section>
 {% endblock %}

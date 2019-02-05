@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -129,13 +130,13 @@ class PedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         )
 
 
-class PedidoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class PedidoDeleteView(SuccessMessageMixin,LoginRequiredMixin, DeleteView):
     '''
      Deleta um pedido do carrinho.
     :URl: http://ip_servidor/pedido/<pk>/excluir
     '''
-    success_message = _("Pedido %(name)s deletado com sucesso!")
 
+    success_message = _("Pedido  deletado com sucesso!")
     queryset = Pedido.objects.all()
     success_url = reverse_lazy('carrinho-list')
 
@@ -143,6 +144,7 @@ class PedidoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         self.object = form.save(commit=False)
         self.object.desativado = True
         self.object.save()
+        messages.success(self.request, self.success_message)
         return super(PedidoDeleteView, self).form_valid(form)
 
     def get(self, *args, **kwargs):
@@ -168,6 +170,7 @@ class PedidoFinalizarView(LoginRequiredMixin, SuccessMessageMixin, View):
         for object in pedidos:
             object.finalizado = True
             object.save()
+            messages.success(self.request, self.success_message)
         return redirect(reverse('produto-list'))
 
 class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
@@ -183,6 +186,7 @@ class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
         for object in pedidos:
             object.desativado = True
             object.save()
+            messages.success(self.request, self.success_message)
         return redirect(reverse('produto-list'))
 
 class PedidoComprarView(LoginRequiredMixin, SuccessMessageMixin, View):
@@ -195,4 +199,7 @@ class PedidoComprarView(LoginRequiredMixin, SuccessMessageMixin, View):
         object = Pedido.objects.get(pk=id)
         object.finalizado = True
         object.save()
+        messages.success(self.request, self.success_message)
         return redirect(reverse('carrinho-list'))
+
+

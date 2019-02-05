@@ -1,0 +1,28 @@
+<div class="ui one column stackable center aligned page grid">
+    <div class="twelve wide column ">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"
+               class="ui button e-blue-purple-button">&laquo;</a>
+        {% else %}
+            <div class="ui button e-blue-purple-button disabled"><span>&laquo;</span></div>
+        {% endif %}
+        {% if page_obj.number|add:'-4' > 1 %}
+            <a href="?page={{ page_obj.number|add:'-5' }}" class="ui button e-blue-purple-button">&hellip;</a>
+        {% endif %}
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <div class="ui button e-blue-purple-button-active"><span>{{ i }} </span></div>
+            {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                <a href="?page={{ i }}" class="ui button e-blue-purple-button">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+            <a href="?page={{ page_obj.number|add:'5' }}" class="ui button e-blue-purple-button">&hellip;</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="ui button e-blue-purple-button">&raquo;</a>
+        {% else %}
+            <div class="ui button e-blue-purple-button disabled"><span>&raquo;</span></div>
+        {% endif %}
+    </div>
+</div>

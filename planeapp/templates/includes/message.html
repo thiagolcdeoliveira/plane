@@ -1,9 +1,21 @@
-{% load i18n%}
+{% load staticfiles i18n%}
 
-1{% if messages%}
+{% if messages%}
 <div class="ui message positive">
-{%for message in messages%}
+      <i class="close icon"></i>
+   {%for message in messages%}
     {{message}}
   {%endfor%}
 </div>
 {%endif%}
+<script>
+$('.message .close')
+  .on('click', function() {
+  alert("oi");
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>
