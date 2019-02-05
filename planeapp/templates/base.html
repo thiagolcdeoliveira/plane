@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-{% load staticfiles %}
+{% load  system staticfiles %}
 
 <head>
     <!-- Standard Meta -->
@@ -50,7 +50,7 @@
                 <a href="login.html" class="ui button">Login</a>
             </div>
             <div class="item">
-                <a href="cadastro.html" class="ui primary button">Cadastrar-se</a>
+                <a href="{%url 'cliente-add' %} class="ui primary button">Cadastrar-se</a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
                     <a href="login.html">Login</a>
                 </div>
                 <div class="item">
-                    <a href="cadastro.html" >Cadastrar-se</a>
+                    <a href="{% url 'cliente-add'%}" >Cadastrar-se</a>
                 </div>
             <div class="item">
                     <a href="{%url 'carrinho-list'%}">Carrinho</a>
@@ -91,10 +91,10 @@
                             <a href="login.html" class="ui button">Login</a>
                         </div>
                         <div class="item">
-                            <a href="cadastro.html" class="ui primary button">Cadastrar-se</a>
+                            <a href="{%url 'cliente-add'%}" class="ui primary button">Cadastrar-se</a>
                         </div>
                         <div class="item">
-                        <a href="{%url 'carrinho-list'%}" class="ui primary button">Carrinho</a>
+                        <a href="{%url 'carrinho-list'%}" class="ui primary button">{{ request.user.username|carrinho }}Carrinho</a>
                         </div>
                     </div>
                 </div>

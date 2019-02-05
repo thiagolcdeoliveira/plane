@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+from audioop import reverse
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import *
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
 
+from planeapp.forms.cliente import ClienteForm
 from planeapp.models.cliente import Cliente
 
 
@@ -16,7 +19,7 @@ class ClienteListView(LoginRequiredMixin, ListView):
     queryset = Cliente.objects.all()
 
 
-class PageDetailViews(LoginRequiredMixin, DetailView):
+class ClienteDetailView(LoginRequiredMixin, DetailView):
     '''
      Detalhes do Cliente.
     :URl: http://ip_servidor/cliente/<id>/
@@ -37,8 +40,12 @@ class ClienteCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(
             cleaned_data,
-            name=self.object.title,
+            name=self.object.username,
         )
+
+    def get_success_url(self):
+        return reverse_lazy('login')
+
 
 
 class ClienteUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -58,7 +65,7 @@ class ClienteUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         )
 
 
-class PageDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class ClienteDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     '''
      Deletar uma página.
     :URl: http://ip_servidor/cliente/<pk>/excluir

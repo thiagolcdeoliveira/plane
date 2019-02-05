@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views.static import serve
 
 from plane import settings
@@ -23,5 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^", include('planeapp.urls')),
     url(r'^media/(.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^login/$', LoginView.as_view(), name='login' ),
+    # url(r'^media/(.*)$', logout, name='logout'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
 
 ]

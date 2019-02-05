@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title_block %}
+Lista de Produtos
+{% endblock title_block %}
+{% load system staticfiles %}
+{% block body_block %}
+<section class="ui ten wide column">
+
+    <div class="ui header"><h3>Cadastro de Usuário</h3></div>
+
+    {%include  "includes/form.html"%}
+</section>
+{%endblock%}

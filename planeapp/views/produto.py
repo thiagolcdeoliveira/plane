@@ -18,17 +18,17 @@ class ProdutoListView(LoginRequiredMixin,ListView):
     :URl: http://ip_servidor/produto/listar/
     '''
     model = Produto
-    form_class = PedidoForm
+    # form_class = PedidoForm
     queryset = Produto.objects.all()
 
-
-    def get_context_data(self,  object_list=None, **kwargs):
-        context = super(ProdutoListView,self).get_context_data(**kwargs)
-        # context["form"] = PedidoForm()
-        # context["form"] = PedidoForm(id=id)
-        # print(context)
-        # print(context['form'])
-        return context
+    #
+    # def get_context_data(self,  object_list=None, **kwargs):
+    #     context = super(ProdutoListView,self).get_context_data(**kwargs)
+    #     # context["form"] = PedidoForm()
+    #     # context["form"] = PedidoForm(id=id)
+    #     # print(context)
+    #     # print(context['form'])
+    #     return context
 
     # def get_success_url(self):
     #     return reverse('author-detail', kwargs={'pk': self.object.pk})
@@ -95,7 +95,7 @@ class ProdutoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         )
 
 
-class PageDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class ProdutoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     '''
      Deletar um produto.
     :URl: http://ip_servidor/cliente/<id>/excluir
@@ -109,7 +109,7 @@ class PageDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         self.object = form.save(commit=False)
         self.object.desativado = True
         self.object.save()
-        return super(PageDeleteView, self).form_valid(form)
+        return super(ProdutoDeleteView, self).form_valid(form)
 
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
 from django.views.generic import *
@@ -25,7 +25,14 @@ class PedidoAtivoPorUsuarioListView(LoginRequiredMixin, ListView):
     queryset = Pedido.objects.filter()
     def get_queryset(self):
         user =  self.request.user
-        return self.queryset.filter(desativado=False,finalizado=False,cliente__username=user)
+        self.queryset =self.queryset.filter(desativado=False,finalizado=False,cliente__username='root1234')
+        return self.queryset.filter(desativado=False,finalizado=False,cliente__username='root1234')
+
+    def get_context_data(self, object_list=None, **kwargs):
+        context = super(PedidoAtivoPorUsuarioListView,self).get_context_data(**kwargs)
+        pedidos = self.queryset
+        context["valor_total"] = sum(valor for valor in [pedido.quantidade * pedido.preco_unit for pedido in pedidos ])
+        return context
 
 class PedidoDetailViews(LoginRequiredMixin, DetailView):
     '''
@@ -127,8 +134,8 @@ class PedidoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     '''
     success_message = _("Pedido %(name)s deletado com sucesso!")
 
-    queryset = Cliente.objects.all()
-    success_url = reverse_lazy('pedido-list')
+    queryset = Pedido.objects.all()
+    success_url = reverse_lazy('carrinho-list')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -145,3 +152,38 @@ class PedidoDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             name=self.object.title,
         )
 
+
+class PedidoFinalizarView(LoginRequiredMixin, SuccessMessageMixin, View):
+    '''
+     Deletar uma página.
+    :URl: http://ip_servidor/pedido/<pk>/excluir
+    '''
+    success_message = "Pedido finalizado com sucesso!"
+    # template="templates/pedido_list.html"
+    queryset = Pedido.objects.all()
+    success_url = reverse_lazy('produto-list')
+    # def post(self,request):
+    def get(self,request, *args, **kwargs):
+        # self.object = form.save(commit=False)
+        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username="root1234")
+        for object in pedidos:
+            # self.object.finalizado = True
+            # self.object.save()
+            object.finalizado = True
+            object.save()
+        # return reverse_lazy('produto-list')
+        return redirect(reverse('produto-list'))
+
+    # def form_valid(self, form):
+    #     self.object = form.save(commit=False)
+    #     self.object.maker = Pedido.objects.get(pk=1)
+    #     form.save()
+    #     return super(PedidoFinalizarView, self).form_valid(form)
+    # def get(self, *args, **kwargs):
+    #     return self.post(*args, **kwargs)
+
+    # def get_success_message(self, cleaned_data):
+    #     return self.success_message % dict(
+    #         cleaned_data,
+    #         name=self.object.nome,
+    #     )
