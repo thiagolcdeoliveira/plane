@@ -20,6 +20,11 @@ STATIC_URL = '/static/'
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DOC_ROOT = os.path.join(PROJECT_DIR, '../doc/_build/html')
+DOC_URL = '/doc/'
+
 
 LOGOUT_REDIRECT_URL = "/login"
 LOGIN_REDIRECT_URL = "/"
@@ -33,7 +38,7 @@ SECRET_KEY = 'mdb*ns=z@_-o@56w-j%6ukdourbg2z5-)tfcp1r6alr5b)yb$x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

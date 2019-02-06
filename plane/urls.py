@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^", include('planeapp.urls')),
     url(r'^media/(.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^doc/(.*)$', serve, {'document_root': settings.DOC_ROOT}),
     url(r'^login/$', LoginView.as_view(), name='login' ),
     # url(r'^media/(.*)$', logout, name='logout'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),

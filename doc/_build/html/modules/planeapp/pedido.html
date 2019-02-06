@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pedido &mdash; plane 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> plane
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Pedido</a><ul>
+<li><a class="reference internal" href="#module-planeapp.views.pedido">views</a></li>
+<li><a class="reference internal" href="#module-planeapp.models.pedido">model</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">plane</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Pedido</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/modules/planeapp/pedido.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pedido">
+<h1>Pedido<a class="headerlink" href="#pedido" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-planeapp.views.pedido">
+<span id="views"></span><h2>views<a class="headerlink" href="#module-planeapp.views.pedido" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoListView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoListView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoListView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Lista todos os Pedido.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedidos/listar/">http://ip_servidor/pedidos/listar/</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoAtivoPorUsuarioListView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoAtivoPorUsuarioListView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoAtivoPorUsuarioListView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lista todos os Pedido ativos.
+:URl: <a class="reference external" href="http://ip_servidor/pedidos/listar/">http://ip_servidor/pedidos/listar/</a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoDetailViews">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoDetailViews</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoDetailViews" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Detalhes do Pedido.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido">http://ip_servidor/pedido</a>/&lt;id&gt;/</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="planeapp.views.pedido.PedidoDetailViews.model">
+<code class="descname">model</code><a class="headerlink" href="#planeapp.views.pedido.PedidoDetailViews.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#planeapp.models.pedido.Pedido" title="planeapp.models.pedido.Pedido"><code class="xref py py-class docutils literal notranslate"><span class="pre">planeapp.models.pedido.Pedido</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoCreateView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoCreateView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoCreateView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Adiciona um pedido.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido/cadastrar/">http://ip_servidor/pedido/cadastrar/</a></td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="planeapp.views.pedido.PedidoCreateView.model">
+<code class="descname">model</code><a class="headerlink" href="#planeapp.views.pedido.PedidoCreateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#planeapp.models.pedido.Pedido" title="planeapp.models.pedido.Pedido"><code class="xref py py-class docutils literal notranslate"><span class="pre">planeapp.models.pedido.Pedido</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.AjaxPedidoCreateView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">AjaxPedidoCreateView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoCreateView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adiciona um pedido via AJAX.
+:URl: <a class="reference external" href="http://ip_servidor/pedido/cadastrar/">http://ip_servidor/pedido/cadastrar/</a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.AjaxPedidoUpdateView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">AjaxPedidoUpdateView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Atualiza um pedido.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido">http://ip_servidor/pedido</a>/&lt;id&gt;/atualizar</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoUpdateView.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>request</em>, <em>id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles GET requests and instantiates a blank version of the form.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoUpdateView.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>request</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles POST requests, instantiating a form instance with the passed
+POST variables and then checked for validity.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoUpdateView.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoUpdateView.form_invalid">
+<code class="descname">form_invalid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.form_invalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the form is invalid, re-render the context data with the
+data-filled form and errors.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoUpdateView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoUpdateView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoUpdateView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Atualiza um pedido.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido">http://ip_servidor/pedido</a>/&lt;id&gt;/atualizar</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="planeapp.views.pedido.PedidoUpdateView.model">
+<code class="descname">model</code><a class="headerlink" href="#planeapp.views.pedido.PedidoUpdateView.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#planeapp.models.pedido.Pedido" title="planeapp.models.pedido.Pedido"><code class="xref py py-class docutils literal notranslate"><span class="pre">planeapp.models.pedido.Pedido</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoDeleteView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoDeleteView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoDeleteView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Deleta um pedido do carrinho.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido">http://ip_servidor/pedido</a>/&lt;pk&gt;/excluir</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoFinalizarView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoFinalizarView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoFinalizarView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Finaliza  o carrinho  do usuário.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/carrinho/finalizar">http://ip_servidor/carrinho/finalizar</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoLimparView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoLimparView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoLimparView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Limpa o carrinho do usuário logado.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/carrinho/limpar">http://ip_servidor/carrinho/limpar</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="planeapp.views.pedido.PedidoComprarView">
+<em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoComprarView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoComprarView" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>Comprar item isolado de um carrinho.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/produto">http://ip_servidor/produto</a>/&lt;id&gt;/comprar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-planeapp.models.pedido">
+<span id="model"></span><h2>model<a class="headerlink" href="#module-planeapp.models.pedido" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="planeapp.models.pedido.Pedido">
+<em class="property">class </em><code class="descclassname">planeapp.models.pedido.</code><code class="descname">Pedido</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.models.pedido.Pedido" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>produto</strong> – models.ForeignKey(Produto)</li>
+<li><strong>cliente</strong> – models.ForeignKey(Cliente)</li>
+<li><strong>quantidade</strong> – models.PositiveIntegerField(default=1)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="planeapp.models.pedido.Pedido.get_absolute_url">
+<code class="descname">get_absolute_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.models.pedido.Pedido.get_absolute_url" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Define a url de retorno após executar os metodos de Create ou Update</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="planeapp.models.pedido.Pedido.DoesNotExist">
+<em class="property">exception </em><code class="descname">DoesNotExist</code><a class="headerlink" href="#planeapp.models.pedido.Pedido.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="planeapp.models.pedido.Pedido.MultipleObjectsReturned">
+<em class="property">exception </em><code class="descname">MultipleObjectsReturned</code><a class="headerlink" href="#planeapp.models.pedido.Pedido.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Thiago
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
