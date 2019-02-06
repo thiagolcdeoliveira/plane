@@ -4,15 +4,10 @@ from __future__ import unicode_literals
 
 from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404
-
 
 # Create your tests here.
-import datetime
-
 from django.test import TestCase
 from planeapp.models.cliente import Cliente
-from planeapp.models.pedido import Pedido
 from planeapp.models.produto import Produto
 
 
@@ -62,13 +57,3 @@ class TestPedido(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    # def test_carrinho(self):
-    #      # category=get_object_or_404(Category,name='DC-flash')
-    #      response = self.client.get(reverse('carrinho-list'), follow=True)
-    #      print(response)
-    #      # self.assertContains(response, '1' )
-    #      # self.assertEqual(response.status_code, 200)
-
-    #
-    # def testObjectCreate(self):
-    #     self.assertEquals(Category.objects.count(), 1)
