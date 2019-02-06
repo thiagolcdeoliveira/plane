@@ -15,19 +15,11 @@ class ClienteForm(ModelForm):
 
     class Meta:
         model = Cliente
-        # fields = "__all__"
         fields = ("username","email","password","password_checker","first_name","last_name")
 
-    # class Meta:
-    #     model = User
-    #     fields = ('first_name','last_name','username', 'email', 'password','password_checker')
 
-    # def clean_email(self):
-    #     # print(self.cleaned_data.get("username"))
-    #     return ValidationEmail(self.cleaned_data.get("username"),self.cleaned_data.get("email"))
     def clean_username(self):
         username = self.cleaned_data['username']
-        # password_checker = self.cleaned_data['username']
         usuarios = User.objects.all()
         if username not in usuarios:
             return username

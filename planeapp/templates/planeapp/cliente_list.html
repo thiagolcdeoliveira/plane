@@ -11,20 +11,15 @@ Lista de Produtos
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Preço Unitário</th>
-            <th>Multiplo</th>
-            <th>Adicionar ao Carrinho</th>
         </tr>
         </thead>
         <tbody>
-        {% for produto in object_list %}
+        {% for cliente in object_list %}
         <tr>
             <td> <img class="ui image mini" src="{% static 'image/eliot.jpg' %}">
-               <div class="ui content">{{produto.nome}}</div>
+               <div class="ui content">{{cliente.username}}</div>
             </td>
-            <td>{{produto.preco_unit}} </td>
-            <td>{{produto.multiplo}}</td>
-            <td><a class="ui button">Adicionar</a></td>
+
         </tr> {% endfor %}
 
         </tbody>

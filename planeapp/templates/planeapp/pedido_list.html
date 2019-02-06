@@ -14,55 +14,48 @@ Lista de Produtos
     {% include  "includes/message.html"%}
     <div id="mensagem"></div>
     {% if object_list%} <table class="ui striped table">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Preço Unitário</th>
-            <th>Quantidade</th>
-            <th>Preço Total</th>
-            <th>Excluir do  Carrinho</th>
-            <th>Comprar Item Isolado</th>
-            <th>Editar</th>
-        </tr>
-        </thead>
-        <tbody>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Preço Unitário</th>
+        <th>Quantidade</th>
+        <th>Preço Total</th>
+        <th>Excluir do  Carrinho</th>
+        <th>Comprar Item Isolado</th>
+        <th>Editar</th>
+    </tr>
+    </thead>
+    <tbody>
 
-        {% for pedido in object_list %}
-        <tr id="pedido_{{pedido.id}}">
-            <td>
-                <!--<img class="ui image mini" src="{% static 'image/eliot.jpg' %}">-->
-                <!--<img class="ui image mini" src="{% static pedido.produto.imagem %}">-->
-               <!--<div class="ui content">-->
-                   {{pedido.produto.nome}}
-<!--</div>-->
-            </td>
-            <td id="pedido_{{pedido.id}}_preco_produto">{{pedido.preco_unit}} </td>
-            <td id="pedido_{{pedido.id}}_quantidade">{{pedido.quantidade}}</td>
-            <!--<td>{{pedido.preco_unit}} * {{pedido.quantidade }}</td>-->
-            <td id="pedido_{{pedido.id}}_valor_por_produto">{{pedido.preco_unit|multiplica:pedido.quantidade }}</td>
-            <td><a href="{%url 'carrinho-produto-excluir' pedido.id%}" class="ui button   red fluid"><i class="ui icon trash alternate"> </i></a></td>
-            <td><a href="{%url 'produto-comprar' pedido.id%}" class="ui button  fluid"><i class="ui icon cart outile"> </i></a></td>
-            <td>
-                <!--<button type="button" class="ui button button e-green-button js-create-object e-margin-top fluid attached" data-url="{%url 'pedido-editar' pedido.id%}" > Adicionar ao Carrinho</button>-->
-
-                <a data-url="{%url 'pedido-editar' pedido.id%}" class="ui button secondary js-create-object fluid"><i class="ui icon edit  outline"> </i> </a>
-            </td>
-        </tr> {% endfor %}
-        <tr>
-            <td colspan="4">Valor total</td>
-            <td id="valor_total" colspan="3"> {{valor_total}} </td>
-        </tr><tr>
-            <td colspan="3"><a class="ui button fluid black" href="{% url 'carrinho-limpar'%}">  Limpar Carrinho</a></td>
-            <td colspan="4"><a class="ui button fluid " href="{%url 'carrinho-finalizar'%}"> Finalizar Pedido</a> </td>
-        </tr>
-        </tbody>
-    </table>
-        <div class="ui modal tiny pedido_editar"  id="modal-object"></div>
+    {% for pedido in object_list %}
+    <tr id="pedido_{{pedido.id}}">
+        <td>
+            {{pedido.produto.nome}}
+        </td>
+        <td id="pedido_{{pedido.id}}_preco_produto">{{pedido.preco_unit}} </td>
+        <td id="pedido_{{pedido.id}}_quantidade">{{pedido.quantidade}}</td>
+        <td id="pedido_{{pedido.id}}_valor_por_produto">{{pedido.preco_unit|multiplica:pedido.quantidade }}</td>
+        <td><a href="{%url 'carrinho-produto-excluir' pedido.id%}" class="ui button   red fluid"><i class="ui icon trash alternate"> </i></a></td>
+        <td><a href="{%url 'produto-comprar' pedido.id%}" class="ui button  fluid"><i class="ui icon cart outile"> </i></a></td>
+        <td>
+            <a data-url="{%url 'pedido-editar' pedido.id%}" class="ui button secondary js-create-object fluid"><i class="ui icon edit  outline"> </i> </a>
+        </td>
+    </tr> {% endfor %}
+    <tr>
+        <td colspan="4">Valor total</td>
+        <td id="valor_total" colspan="3"> {{valor_total}} </td>
+    </tr><tr>
+        <td colspan="3"><a class="ui button fluid black" href="{% url 'carrinho-limpar'%}">  Limpar Carrinho</a></td>
+        <td colspan="4"><a class="ui button fluid " href="{%url 'carrinho-finalizar'%}"> Finalizar Pedido</a> </td>
+    </tr>
+    </tbody>
+</table>
+    <div class="ui modal tiny pedido_editar"  id="modal-object"></div>
 
     {%else%}
     <div class="ui  message">
-  Você não possui nenhum item no seu carrinho. Aproveite e compre alguns produtos aqui.
-</div>
+        Você não possui nenhum item no seu carrinho. Aproveite e compre alguns produtos aqui.
+    </div>
     {%endif%}
 </div>
 </section>

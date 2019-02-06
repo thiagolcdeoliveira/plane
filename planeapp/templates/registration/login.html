@@ -26,22 +26,12 @@ Lista de Produtos
             <i class="user icon"></i>
             <input type="text" name="username" placeholder="Username">
           </div>
-            <!--{% if form.username.errors %}-->
-            <!--<span class="ui pointing red label">-->
-                   <!--{{ form.username.errors }}-->
-               <!--</span>-->
-        <!--{% endif %}-->
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
             <input type="password" name="password" placeholder="Senha">
           </div>
-            <!--{% if form.username.errors %}-->
-            <!--<span class="ui pointing red label">-->
-                   <!--{{ form.username.errors }}-->
-               <!--</span>-->
-        <!--{% endif %}-->
         </div>
           {%csrf_token%}
                <input class="ui fluid large teal submit button" type="submit" value="Login">

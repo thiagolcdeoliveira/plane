@@ -3,12 +3,9 @@
 {% load  system staticfiles %}
 
 <head>
-    <!-- Standard Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-    <!-- Site Properties -->
     <title>  Plane -
         {% block title_block %}
         Home
@@ -30,8 +27,6 @@
     <script src='{% static "semantic/components/transition.js" %}'></script>
     <script src='{% static "semantic/components/dimmer.js" %}'></script>
     <script src='{% static "semantic/components/modal.js" %}'></script>
-    <!--<script src='{% static "semantic/components/close.js" %}'></script>-->
-
     <script>
 
 
@@ -40,54 +35,39 @@
 </head>
 <body>
 
-<!-- Following Menu -->
 <div class="ui large top fixed hidden menu ">
     <div class="ui container ">
         <a href="{%url 'home'%}" class="active item">Home</a>
+        {% if  user.is_superuser%}
+        <a href="{%url 'pedido-list'%}" class=" item">Listar Produtos</a>
 
-
+        {%endif%}
         <div class="right menu">
-            <!--<div class="item">-->
-                <a   href="{%url 'login'%}" class="ui item button">Login</a>
-            <!--</div>-->
-            <!--<div class="item">-->
-                <a href="{%url 'cliente-add' %}" class="ui item primary button">Cadastrar-se</a>
-            <!--</div>-->
-             <!--<div class="item">-->
-                <a class="item" href="{%url 'logout'%}" class="ui item button">Logout</a>
-            <!--</div>-->
+            {% if not user.is_authenticated%}
+            <a  href="{%url 'login' %}" class="ui item button">Login</a>
+            {%else%}
+            <a  href="{%url 'logout' %}" class="ui item button">Logout</a>
+            <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="carrinho" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
+            {%endif%}
         </div>
     </div>
 </div>
 
 <div class="ui vertical inverted sidebar menu ">
 
-        <div class="ui container ">
-            <a class="toc item">
-                    <i class="sidebar icon"></i>
-                </a>
-            <a href="{%url 'home'%}" class="active item">Home</a>
-                <!--<div class="item">-->
-            {% if not user.is_authenticated%}
+    <div class="ui container ">
+        <a class="toc item">
+            <i class="sidebar icon"></i>
+        </a>
+        <a href="{%url 'home'%}" class="active item">Home</a>
+        {% if not user.is_authenticated%}
+        <a class="item" href="{% url 'login'%}">Login</a>
+        {%else%}
+        <a class="item" href="{% url 'logout'%}">Logout</a>
+        <a class="item" href="{%url 'carrinho-list'%}">Carrinho</a>
+        {%endif%}
 
-                    <a class="item" href="{% url 'login'%}">Login</a>
-                <!--</div>-->
-            <!--<div class="item">-->
-            {%else%}
-
-                    <a class="item" href="{% url 'logout'%}">Logout</a>
-                <!--</div>-->
-                <!--<div class="item">-->
-            <a class="item" href="{%url 'carrinho-list'%}">Carrinho</a>
-
-            {%endif%}
-
-                    <!--<a class="item" href="{% url 'cliente-add'%}" >Cadastrar-se</a>-->
-                <!--</div>-->
-            <!--<div class="item">-->
-                <!--</div>-->
-
-        </div>
+    </div>
 </div>
 
 
@@ -100,28 +80,19 @@
                 </a>
                 <div class="ui container ">
                     <a href="{%url 'home'%}" class=" item">Home</a>
-         {% if  user.is_superuser%}
-           <a href="{%url 'pedido-list'%}" class=" item">Listar Produtos</a>
+                    {% if  user.is_superuser%}
+                    <a href="{%url 'pedido-list'%}" class=" item">Listar Produtos</a>
 
-{%endif%}
-
+                    {%endif%}
 
                     <div class="right menu">
-                        <!--<div class="item">-->
-{% if not user.is_authenticated%}
-                            <a  href="{%url 'login' %}" class="ui item button">Login</a>
-                        <!--</div>-->
-{%else%}
-                           <!--<div class="item">-->
-                            <a  href="{%url 'logout' %}" class="ui item button">Logout</a>
-                        <!--</div>-->
-                        <!--<div class="item">-->
-                            <!--<a  href="{%url 'cliente-add'%}" class="ui item  primary button">Cadastrar-se</a>-->
-                        <!--</div>-->
-                        <!--<div class="item">-->
+                        {% if not user.is_authenticated%}
+                        <a  href="{%url 'login' %}" class="ui item button">Login</a>
+                        {%else%}
+                        <a  href="{%url 'logout' %}" class="ui item button">Logout</a>
+
                         <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="carrinho" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
-                        <!--</div>-->
-{%endif%}
+                        {%endif%}
 
                     </div>
                 </div>
@@ -142,10 +113,6 @@
                 <div class="three wide column">
                     <h4 class="ui inverted header"></h4>
                     <div class="ui inverted link list">
-                        <!--<a href="#" class="item"></a>-->
-                        <!--<a href="#" class="item"></a>-->
-                        <!--<a href="#" class="item"></a>-->
-                        <!--<a href="#" class="item"></a>-->
                         <i class="ui icon massive rebel "></i>
                     </div>
                 </div>
@@ -153,16 +120,16 @@
                     <h4 class="ui inverted header"></h4>
                     <div class="ui inverted link list">
 
-{% if not user.is_authenticated%}
-                            <a  href="{%url 'login' %}" class="ui item ">Login</a>
+                        {% if not user.is_authenticated%}
+                        <a  href="{%url 'login' %}" class="ui item ">Login</a>
 
-{%else%}
+                        {%else%}
 
-                            <a  href="{%url 'logout' %}" class="ui item ">Logout</a>
+                        <a  href="{%url 'logout' %}" class="ui item ">Logout</a>
                         <a  href="{%url 'carrinho-list'%}" class="ui item ">  Carrinho</a>
 
-{%endif%}
-                            <a  href="/doc/index.html" class="ui item ">Documentação</a>
+                        {%endif%}
+                        <a  href="/doc/index.html" class="ui item ">Documentação</a>
 
                     </div>
                 </div>
