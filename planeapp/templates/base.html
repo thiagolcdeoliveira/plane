@@ -68,16 +68,23 @@
                 </a>
             <a href="{%url 'home'%}" class="active item">Home</a>
                 <!--<div class="item">-->
+            {% if not user.is_authenticated%}
+
                     <a class="item" href="{% url 'login'%}">Login</a>
                 <!--</div>-->
             <!--<div class="item">-->
+            {%else%}
+
                     <a class="item" href="{% url 'logout'%}">Logout</a>
                 <!--</div>-->
                 <!--<div class="item">-->
-                    <a class="item" href="{% url 'cliente-add'%}" >Cadastrar-se</a>
+            <a class="item" href="{%url 'carrinho-list'%}">Carrinho</a>
+
+            {%endif%}
+
+                    <!--<a class="item" href="{% url 'cliente-add'%}" >Cadastrar-se</a>-->
                 <!--</div>-->
             <!--<div class="item">-->
-                    <a class="item" href="{%url 'carrinho-list'%}">Carrinho</a>
                 <!--</div>-->
 
         </div>
@@ -95,17 +102,21 @@
                     <a href="{%url 'home'%}" class="active item">Home</a>
                     <div class="right menu">
                         <!--<div class="item">-->
+{% if not user.is_authenticated%}
                             <a  href="{%url 'login' %}" class="ui item button">Login</a>
                         <!--</div>-->
+{%else%}
                            <!--<div class="item">-->
                             <a  href="{%url 'logout' %}" class="ui item button">Logout</a>
                         <!--</div>-->
                         <!--<div class="item">-->
-                            <a  href="{%url 'cliente-add'%}" class="ui item  primary button">Cadastrar-se</a>
+                            <!--<a  href="{%url 'cliente-add'%}" class="ui item  primary button">Cadastrar-se</a>-->
                         <!--</div>-->
                         <!--<div class="item">-->
-                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><div id="carrinho" class="carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
+                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="carrinho" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
                         <!--</div>-->
+{%endif%}
+
                     </div>
                 </div>
             </div>

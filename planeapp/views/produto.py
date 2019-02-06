@@ -21,7 +21,7 @@ class ProdutoListView(LoginRequiredMixin,ListView):
     model = Produto
     # form_class = PedidoForm
     queryset = Produto.objects.all()
-    paginate_by = 6
+    # paginate_by = 6
 
     #
     # def get_context_data(self,  object_list=None, **kwargs):

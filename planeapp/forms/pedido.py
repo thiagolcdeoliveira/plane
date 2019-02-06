@@ -16,10 +16,10 @@ class PedidoForm(ModelForm):
         fields = ('preco_unit','quantidade',)
     def clean_preco_unit(self):
         valor = self.cleaned_data.get("preco_unit")
-        if  valor >= self.produto.preco_unit:
+        if  valor >= (float(self.produto.preco_unit) - float(self.produto.preco_unit) * 0.1):
             return valor
         else:
-            raise forms.ValidationError("Esse produto deve ser vendido igual ou acima de  R$ %s" % self.produto.preco_unit)
+            raise forms.ValidationError("Esse produto deve ser vendido igual ou acima de  R$ %s" % (float(self.produto.preco_unit) - float(self.produto.preco_unit) * 0.1))
 
     def clean_quantidade(self):
         quantidade = self.cleaned_data.get("quantidade")

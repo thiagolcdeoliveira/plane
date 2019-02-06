@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 
 from planeapp.views.cliente import ClienteCreateView, ClienteDetailView
 from planeapp.views.pedido import PedidoCreateView, AjaxPedidoCreateView, PedidoAtivoPorUsuarioListView, \
-    PedidoDeleteView, PedidoFinalizarView, PedidoLimparView, PedidoComprarView, AjaxPedidoUpdateView
+    PedidoDeleteView, PedidoFinalizarView, PedidoLimparView, PedidoComprarView, AjaxPedidoUpdateView, PedidoListView
 from planeapp.views.produto import ProdutoListView
 
 urlpatterns=[
@@ -19,4 +19,5 @@ urlpatterns=[
     url(r'produto/(?P<id>[\d\-]+)/comprar/$', PedidoComprarView.as_view(), name='produto-comprar'),
     url(r'usuario/cadastrar/$', ClienteCreateView.as_view(), name='cliente-add'),
     url(r'usuario/detail/$', ClienteDetailView.as_view(), name='cliente-detail'),
+    url(r'pedido/listar/$', PedidoListView.as_view(), name='pedido-list'),
 ]

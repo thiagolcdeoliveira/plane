@@ -22,6 +22,16 @@ class PedidoListView(LoginRequiredMixin, ListView):
     :URl: http://ip_servidor/pedidos/listar/
     '''
     queryset = Pedido.objects.all()
+    template_name = "pedido_list_admin.html"
+    template_name_suffix = "_list_admin"
+    paginate_by = 20
+
+    # def get_context_data(self, object_list=None, **kwargs):
+    #     context = super(PedidoListView, self).get_context_data(**kwargs)
+    #     print(self.template_name)
+    #     return context
+    # def get_template_names(self):
+    #     return self.template_name
 
 class PedidoAtivoPorUsuarioListView(LoginRequiredMixin, ListView):
     '''
@@ -31,8 +41,8 @@ class PedidoAtivoPorUsuarioListView(LoginRequiredMixin, ListView):
     queryset = Pedido.objects.filter()
     def get_queryset(self):
         user =  self.request.user
-        self.queryset =self.queryset.filter(desativado=False,finalizado=False,cliente__username='root1234')
-        return self.queryset.filter(desativado=False,finalizado=False,cliente__username='root1234')
+        self.queryset =self.queryset.filter(desativado=False,finalizado=False,cliente__username=self.request.user)
+        return self.queryset.filter(desativado=False,finalizado=False,cliente__username=self.request.user)
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super(PedidoAtivoPorUsuarioListView,self).get_context_data(**kwargs)
@@ -87,7 +97,7 @@ class AjaxPedidoCreateView(View):
         form = PedidoForm(request.POST, request.FILES, id=id)
         if form.is_valid():
             form = form.save(commit=False)
-            form.cliente = Cliente.objects.get(username='root1234')
+            form.cliente = Cliente.objects.get(username=request.user)
             form.produto = Produto.objects.get(id=id)
             return self.form_valid(form)
         else:
@@ -99,7 +109,7 @@ class AjaxPedidoCreateView(View):
         context = {}
         form.save()
         data['form_is_valid'] = True
-        data["carrinho"] = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username='root1234').count()
+        data["carrinho"] = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username=self.request.user).count()
         data['html_mensagem'] = render_to_string(self.template_mensagem, context, request=self.request)
         return JsonResponse(data)
 
@@ -155,7 +165,7 @@ class AjaxPedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         data['pedido'] = pedido.id
         data['quantidade'] = pedido.quantidade
         data['preco'] = pedido.preco_unit
-        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username='root1234')
+        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username=self.request.user)
         data['total'] =  sum(valor for valor in [pedido.quantidade * pedido.preco_unit for pedido in pedidos ])
         data['html_mensagem'] = render_to_string(self.template_mensagem, context, request=self.request)
         return JsonResponse(data)
@@ -226,7 +236,7 @@ class PedidoFinalizarView(LoginRequiredMixin, SuccessMessageMixin, View):
     queryset = Pedido.objects.all()
     success_url = reverse_lazy('produto-list')
     def get(self,request, *args, **kwargs):
-        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username="root1234")
+        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username=self.request.user)
         for object in pedidos:
             object.finalizado = True
             object.save()
@@ -242,7 +252,7 @@ class PedidoLimparView(LoginRequiredMixin, SuccessMessageMixin, View):
     queryset = Pedido.objects.all()
     success_url = reverse_lazy('produto-list')
     def get(self,request, *args, **kwargs):
-        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username="root1234")
+        pedidos = Pedido.objects.filter(desativado=False,finalizado=False,cliente__username=request.user)
         for object in pedidos:
             object.desativado = True
             object.save()
