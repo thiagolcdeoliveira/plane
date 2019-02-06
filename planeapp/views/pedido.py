@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import *
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
@@ -14,8 +15,10 @@ from planeapp.forms.pedido import PedidoForm
 from planeapp.models.cliente import Cliente
 from planeapp.models.pedido import Pedido
 from planeapp.models.produto import Produto
+from planeapp.permission.decorator import is_superuser
 
 
+@method_decorator(is_superuser,name='dispatch')
 class PedidoListView(LoginRequiredMixin, ListView):
     '''
      Lista todos os Pedido.

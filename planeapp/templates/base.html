@@ -99,7 +99,13 @@
                     <i class="sidebar icon"></i>
                 </a>
                 <div class="ui container ">
-                    <a href="{%url 'home'%}" class="active item">Home</a>
+                    <a href="{%url 'home'%}" class=" item">Home</a>
+         {% if  user.is_superuser%}
+           <a href="{%url 'pedido-list'%}" class=" item">Listar Produtos</a>
+
+{%endif%}
+
+
                     <div class="right menu">
                         <!--<div class="item">-->
 {% if not user.is_authenticated%}
@@ -153,13 +159,15 @@
 {%else%}
 
                             <a  href="{%url 'logout' %}" class="ui item ">Logout</a>
-                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="carrinho" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
+                        <a  href="{%url 'carrinho-list'%}" class="ui item ">  Carrinho</a>
+
 {%endif%}
                             <a  href="/doc/index.html" class="ui item ">Documentação</a>
 
                     </div>
                 </div>
                 <div class="seven wide column">
+
                     <h4 class="ui inverted header">PLANE </h4>
                     <p>Todos os direitos reservados para PLANE.</p>
                 </div>
