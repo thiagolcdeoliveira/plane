@@ -27,7 +27,7 @@ class ClienteDetailView(LoginRequiredMixin, DetailView):
     model = Cliente
 
 
-class ClienteCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class ClienteCreateView(SuccessMessageMixin, CreateView):
     '''
      Adiciona um Cliente.
     :URl: http://ip_servidor/cliente/cadastrar/

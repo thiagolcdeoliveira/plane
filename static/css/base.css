@@ -3,7 +3,11 @@
   display: none;
 }
 
+.espaco{
 
+height: 5em;
+
+}
 article.ui.grid {
     margin-top: auto;
     min-height: 40em;

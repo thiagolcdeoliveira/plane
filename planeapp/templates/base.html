@@ -136,19 +136,27 @@
                 <div class="three wide column">
                     <h4 class="ui inverted header"></h4>
                     <div class="ui inverted link list">
-                        <a href="#" class="item"></a>
-                        <a href="#" class="item"></a>
-                        <a href="#" class="item"></a>
-                        <a href="#" class="item"></a>
+                        <!--<a href="#" class="item"></a>-->
+                        <!--<a href="#" class="item"></a>-->
+                        <!--<a href="#" class="item"></a>-->
+                        <!--<a href="#" class="item"></a>-->
+                        <i class="ui icon massive rebel "></i>
                     </div>
                 </div>
                 <div class="three wide column">
                     <h4 class="ui inverted header"></h4>
                     <div class="ui inverted link list">
-                        <a href="#" class="item"></a>
-                        <a href="#" class="item"></a>
-                        <a href="#" class="item"></a>
-                        <a href="#" class="item"></a>
+
+{% if not user.is_authenticated%}
+                            <a  href="{%url 'login' %}" class="ui item ">Login</a>
+
+{%else%}
+
+                            <a  href="{%url 'logout' %}" class="ui item ">Logout</a>
+                        <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="carrinho" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
+{%endif%}
+                            <a  href="/doc/index.html" class="ui item ">Documentação</a>
+
                     </div>
                 </div>
                 <div class="seven wide column">
