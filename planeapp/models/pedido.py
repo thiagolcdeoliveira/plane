@@ -12,6 +12,8 @@ class Pedido(models.Model):
     :param produto: models.ForeignKey(Produto)
     :param cliente: models.ForeignKey(Cliente)
     :param quantidade: models.PositiveIntegerField(default=1)
+    :param desativado: models.BooleanField(blank=True,default=False)
+    :param finalizado: models.BooleanField(blank=True,default=False)
     '''
     produto = models.ForeignKey(Produto)
     #c

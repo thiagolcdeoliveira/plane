@@ -22,7 +22,7 @@ class Produto(models.Model):
         '''
         :return: Define a url de retorno após executar os metodos de Create ou Update
         '''
-        return reverse_lazy('produtos-detail', kwargs={'pk': self.pk})
+        return reverse_lazy('produto-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         '''

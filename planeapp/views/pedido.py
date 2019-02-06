@@ -19,26 +19,20 @@ from planeapp.models.produto import Produto
 class PedidoListView(LoginRequiredMixin, ListView):
     '''
      Lista todos os Pedido.
-    :URl: http://ip_servidor/pedidos/listar/
+    :URl: http://ip_servidor/pedido/listar/
     '''
     queryset = Pedido.objects.all()
     template_name = "pedido_list_admin.html"
     template_name_suffix = "_list_admin"
     paginate_by = 20
 
-    # def get_context_data(self, object_list=None, **kwargs):
-    #     context = super(PedidoListView, self).get_context_data(**kwargs)
-    #     print(self.template_name)
-    #     return context
-    # def get_template_names(self):
-    #     return self.template_name
-
 class PedidoAtivoPorUsuarioListView(LoginRequiredMixin, ListView):
     '''
     Lista todos os Pedido ativos.
-    :URl: http://ip_servidor/pedidos/listar/
+    :URl: http://ip_servidor/carrinho/listar/
     '''
     queryset = Pedido.objects.filter()
+
     def get_queryset(self):
         user =  self.request.user
         self.queryset =self.queryset.filter(desativado=False,finalizado=False,cliente__username=self.request.user)
@@ -77,12 +71,18 @@ class PedidoCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class AjaxPedidoCreateView(View):
     '''
     Adiciona um pedido via AJAX.
-    :URl: http://ip_servidor/pedido/cadastrar/
+   :URl: http://ip_servidor/pedido/cadastrar/
     '''
     template_name_json = 'includes/form_json.html'
     template_mensagem = 'includes/mensagem_json.html'
 
     def get(self, request,id,**kwargs):
+        '''
+        :param request:
+        :param id:
+        :param kwargs: id do produto
+        :return: HTML do modal
+        '''
         context = {}
         data = {}
         form = PedidoForm(id=id)
@@ -94,6 +94,12 @@ class AjaxPedidoCreateView(View):
         return JsonResponse(data)
 
     def post(self, request,id):
+        '''
+        :param self:
+        :param request:
+        :param id: id do produto
+        :return: sucesso ou não do cadstro
+        '''
         form = PedidoForm(request.POST, request.FILES, id=id)
         if form.is_valid():
             form = form.save(commit=False)
@@ -105,6 +111,11 @@ class AjaxPedidoCreateView(View):
             return self.form_invalid(form)
 
     def form_valid(self, form):
+        '''
+        :param self:
+        :param form: de cadastro do pedido
+        :return: um JSON com as informações sobre o cadstro
+        '''
         data = dict()
         context = {}
         form.save()
@@ -114,6 +125,12 @@ class AjaxPedidoCreateView(View):
         return JsonResponse(data)
 
     def form_invalid(self, form):
+        '''
+
+        :param self:
+        :param form: erro no form
+        :return: retorna o erro no cadastro
+        '''
         context = {}
         data = dict()
         data['form_is_valid'] = False
@@ -133,6 +150,13 @@ class AjaxPedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_mensagem = 'includes/mensagem_json.html'
 
     def get(self, request, id, **kwargs):
+        '''
+
+        :param request:
+        :param id: id do pedido
+        :param kwargs:
+        :return: o cadastro de uma atualização
+        '''
         context = {}
         data = {}
         pedido= Pedido.objects.get(id=id)
@@ -145,6 +169,12 @@ class AjaxPedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return JsonResponse(data)
 
     def post(self, request, id):
+        '''
+
+        :param request:
+        :param id: do pedido
+        :return: retorna o sucesso ou não
+        '''
         pedido= Pedido.objects.get(id=id)
         form = PedidoForm(request.POST, request.FILES,id=pedido.produto.id,instance=pedido)
         if form.is_valid():
@@ -155,6 +185,11 @@ class AjaxPedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
+        '''
+
+        :param form:
+        :return: retorna retorna o sucesso do cadastro
+        '''
         data = dict()
         context = {}
         form.save()
@@ -171,6 +206,11 @@ class AjaxPedidoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return JsonResponse(data)
 
     def form_invalid(self, form):
+        '''
+
+        :param form:
+        :return: retorna o erro no cadastro da atualização
+        '''
         context = {}
         data = dict()
         data['form_is_valid'] = False

@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cliente" href="cliente.html" />
+    <link rel="prev" title="Bem vindos ao plane!" href="../../index.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -80,15 +82,16 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Pedido</a><ul>
-<li><a class="reference internal" href="#module-planeapp.views.pedido">views</a></li>
-<li><a class="reference internal" href="#module-planeapp.models.pedido">model</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pedido</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-planeapp.views.pedido">views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-planeapp.models.pedido">model</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="cliente.html">Cliente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="produto.html">Produto</a></li>
 </ul>
-</div>
+
             
           
         </div>
@@ -164,7 +167,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedidos/listar/">http://ip_servidor/pedidos/listar/</a></td>
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido/listar/">http://ip_servidor/pedido/listar/</a></td>
 </tr>
 </tbody>
 </table>
@@ -174,7 +177,7 @@
 <dt id="planeapp.views.pedido.PedidoAtivoPorUsuarioListView">
 <em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">PedidoAtivoPorUsuarioListView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.PedidoAtivoPorUsuarioListView" title="Permalink to this definition">¶</a></dt>
 <dd><p>Lista todos os Pedido ativos.
-:URl: <a class="reference external" href="http://ip_servidor/pedidos/listar/">http://ip_servidor/pedidos/listar/</a></p>
+:URl: <a class="reference external" href="http://ip_servidor/carrinho/listar/">http://ip_servidor/carrinho/listar/</a></p>
 </dd></dl>
 
 <dl class="class">
@@ -222,8 +225,98 @@
 <dl class="class">
 <dt id="planeapp.views.pedido.AjaxPedidoCreateView">
 <em class="property">class </em><code class="descclassname">planeapp.views.pedido.</code><code class="descname">AjaxPedidoCreateView</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoCreateView" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adiciona um pedido via AJAX.
-:URl: <a class="reference external" href="http://ip_servidor/pedido/cadastrar/">http://ip_servidor/pedido/cadastrar/</a></p>
+<dd><blockquote>
+<div>Adiciona um pedido via AJAX.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">URl:</th><td class="field-body"><a class="reference external" href="http://ip_servidor/pedido/cadastrar/">http://ip_servidor/pedido/cadastrar/</a></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoCreateView.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>request</em>, <em>id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoCreateView.get" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> – </li>
+<li><strong>id</strong> – </li>
+<li><strong>kwargs</strong> – id do produto</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">HTML do modal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoCreateView.post">
+<code class="descname">post</code><span class="sig-paren">(</span><em>request</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoCreateView.post" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>self</strong> – </li>
+<li><strong>request</strong> – </li>
+<li><strong>id</strong> – id do produto</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sucesso ou não do cadstro</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoCreateView.form_valid">
+<code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoCreateView.form_valid" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>self</strong> – </li>
+<li><strong>form</strong> – de cadastro do pedido</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">um JSON com as informações sobre o cadstro</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="planeapp.views.pedido.AjaxPedidoCreateView.form_invalid">
+<code class="descname">form_invalid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoCreateView.form_invalid" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>self</strong> – </li>
+<li><strong>form</strong> – erro no form</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">retorna o erro no cadastro</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -242,27 +335,72 @@
 <dl class="method">
 <dt id="planeapp.views.pedido.AjaxPedidoUpdateView.get">
 <code class="descname">get</code><span class="sig-paren">(</span><em>request</em>, <em>id</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles GET requests and instantiates a blank version of the form.</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> – </li>
+<li><strong>id</strong> – id do pedido</li>
+<li><strong>kwargs</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">o cadastro de uma atualização</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="planeapp.views.pedido.AjaxPedidoUpdateView.post">
 <code class="descname">post</code><span class="sig-paren">(</span><em>request</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.post" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles POST requests, instantiating a form instance with the passed
-POST variables and then checked for validity.</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> – </li>
+<li><strong>id</strong> – do pedido</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">retorna o sucesso ou não</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="planeapp.views.pedido.AjaxPedidoUpdateView.form_valid">
 <code class="descname">form_valid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.form_valid" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the form is valid, save the associated model.</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>form</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">retorna retorna o sucesso do cadastro</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="planeapp.views.pedido.AjaxPedidoUpdateView.form_invalid">
 <code class="descname">form_invalid</code><span class="sig-paren">(</span><em>form</em><span class="sig-paren">)</span><a class="headerlink" href="#planeapp.views.pedido.AjaxPedidoUpdateView.form_invalid" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the form is invalid, re-render the context data with the
-data-filled form and errors.</p>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>form</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">retorna o erro no cadastro da atualização</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -362,6 +500,8 @@ data-filled form and errors.</p>
 <li><strong>produto</strong> – models.ForeignKey(Produto)</li>
 <li><strong>cliente</strong> – models.ForeignKey(Cliente)</li>
 <li><strong>quantidade</strong> – models.PositiveIntegerField(default=1)</li>
+<li><strong>desativado</strong> – models.BooleanField(blank=True,default=False)</li>
+<li><strong>finalizado</strong> – models.BooleanField(blank=True,default=False)</li>
 </ul>
 </td>
 </tr>
@@ -400,6 +540,15 @@ data-filled form and errors.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cliente.html" class="btn btn-neutral float-right" title="Cliente" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../index.html" class="btn btn-neutral" title="Bem vindos ao plane!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

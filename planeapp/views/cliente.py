@@ -14,7 +14,7 @@ from planeapp.models.cliente import Cliente
 class ClienteListView(LoginRequiredMixin, ListView):
     '''
      Lista todos os Clientes.
-    :URl: http://ip_servidor/clientes/listar/
+    :URl: http://ip_servidor/cliente/listar/
     '''
     queryset = Cliente.objects.all()
 
@@ -22,7 +22,7 @@ class ClienteListView(LoginRequiredMixin, ListView):
 class ClienteDetailView(LoginRequiredMixin, DetailView):
     '''
      Detalhes do Cliente.
-    :URl: http://ip_servidor/cliente/<id>/
+    :URl: http://ip_servidor/cliente/<id>/visualizar
     '''
     model = Cliente
 
@@ -51,7 +51,7 @@ class ClienteCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class ClienteUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     '''
      Atualiza um Cliente.
-    :URl: http://ip_servidor/category/listar/
+    :URl: http://ip_servidor/cliente/<id>/alterar
     '''
     model = Cliente
     form_class = ClienteForm
@@ -79,7 +79,7 @@ class ClienteDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         self.object = form.save(commit=False)
         self.object.is_active = False
         self.object.save()
-        return super(PageDeleteView, self).form_valid(form)
+        return super(ClienteDeleteView, self).form_valid(form)
 
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
