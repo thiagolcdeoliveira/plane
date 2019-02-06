@@ -24,9 +24,7 @@ Lista de Produtos
             <th>Status</th>
             <th>Processo</th>
             <th>Rentabilidade</th>
-            <!--<th>Excluir do  Carrinho</th>-->
-            <!--<th>Comprar Item Isolado</th>-->
-            <!--<th>Editar</th>-->
+
         </tr>
         </thead>
         <tbody>
@@ -34,29 +32,15 @@ Lista de Produtos
         {% for pedido in object_list %}
         <tr id="pedido_{{pedido.id}}">
             <td>
-                <!--<img class="ui image mini" src="{% static 'image/eliot.jpg' %}">-->
-                <!--<img class="ui image mini" src="{% static pedido.produto.imagem %}">-->
-               <!--<div class="ui content">-->
-                   {{pedido.produto.nome}}
-<!--</div>-->
+                {{pedido.produto.nome}}
             </td>
             <td id="pedido_{{pedido.id}}_preco_produto">{{pedido.preco_unit}} </td>
             <td id="pedido_{{pedido.id}}_quantidade">{{pedido.quantidade}}</td>
-            <!--<td>{{pedido.preco_unit}} * {{pedido.quantidade }}</td>-->
             <td id="pedido_{{pedido.id}}_valor_por_produto">{{pedido.preco_unit|multiplica:pedido.quantidade }}</td>
-            <!--<td><a href="{%url 'carrinho-produto-excluir' pedido.id%}" class="ui button   red fluid">Excluir</a></td>-->
-            <!--<td><a href="{%url 'produto-comprar' pedido.id%}" class="ui button red fluid">Comprar</a></td>-->
-            <!--<td>-->
-                <!--&lt;!&ndash;<button type="button" class="ui button button e-green-button js-create-object e-margin-top fluid attached" data-url="{%url 'pedido-editar' pedido.id%}" > Adicionar ao Carrinho</button>&ndash;&gt;-->
-
-                <!--<a data-url="{%url 'pedido-editar' pedido.id%}" class="ui button red js-create-object fluid">Editar</a>-->
-            <!--</td>-->
             <td>
-
                 {{pedido.cliente}}
             </td>
             <td>
-
                 {% if pedido.desativado%}Desativado{%else%}Ativo{%endif%}
             </td>
             <td>
@@ -66,13 +50,6 @@ Lista de Produtos
                 {% if pedido.id|valorizacao %}Ótima{%else%}Boa{%endif%}
             </td>
         </tr> {% endfor %}
-        <!--<tr>-->
-            <!--<td colspan="4">Valor total</td>-->
-            <!--<td id="valor_total" colspan="3"> {{valor_total}} </td>-->
-        <!--</tr><tr>-->
-            <!--&lt;!&ndash;<td colspan="3"><a class="ui button fluid black" href="{% url 'carrinho-limpar'%}">  Limpar Carrinho</a></td>&ndash;&gt;-->
-            <!--&lt;!&ndash;<td colspan="4"><a class="ui button fluid " href="{%url 'carrinho-finalizar'%}"> Finalizar Pedido</a> </td>&ndash;&gt;-->
-        <!--</tr>-->
         </tbody>
     </table>
         <div class="ui modal tiny pedido_editar"  id="modal-object"></div>

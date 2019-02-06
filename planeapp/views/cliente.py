@@ -34,7 +34,7 @@ class ClienteCreateView(SuccessMessageMixin, CreateView):
     '''
     model = Cliente
     form_class = ClienteForm
-    success_message = "Cliente %(name)s adicionado com sucesso!"
+    success_message = "Usuario %(name)s cadastrado com sucesso!"
 
 
     def get_success_message(self, cleaned_data):

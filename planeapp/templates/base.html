@@ -47,7 +47,7 @@
             <a  href="{%url 'login' %}" class="ui item button">Login</a>
             {%else%}
             <a  href="{%url 'logout' %}" class="ui item button">Logout</a>
-            <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="carrinho" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
+            <a  href="{%url 'carrinho-list'%}" class="ui item primary button"><i class="ui icon cart arrow down"></i>   <div id="" class="floating ui  label carrinho">{{ request.user.username|carrinho }}</div> Carrinho</a>
             {%endif%}
         </div>
     </div>

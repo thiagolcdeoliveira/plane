@@ -33,14 +33,11 @@ function abrir_modal(cod_produto,preco,multiplo,nome_produto){
   $("#id_multiplo").val(multiplo)
   $("#id_preco_unit").val(preco)
 
-//  $("#nome_produto").select(cod_produto)
   $('.tiny.modal')
   .modal('show');
 
 }
-//$('.special.cards .image').dimmer({
-//  on: 'hover'
-//});
+
 
 $(function () {
 
@@ -71,17 +68,14 @@ $(function () {
             type: form.attr("method"),
             dataType: 'json',
             success: function (data) {
-//            console.log(data.html_mensagem)
+
                 if (data.form_is_valid) {
-//            console.log("oi")
-//            console.log(data.html_mensagem)
+
                     $("#modal-object").modal("hide");
 
 
                     $("#mensagem").html(data.html_mensagem);
                     if (data.editado){
-//                         alert("pedido_"+data.pedido+"_quantidade_produto")
-//                         alert("#pedido_"+data.pedido+"_preco_produto")
                         $("#pedido_"+data.pedido+"_quantidade").text(data.quantidade);
                         $("#pedido_"+data.pedido+"_preco_produto").text(data.preco);
                         $("#pedido_"+data.pedido+"_valor_por_produto").text(data.preco*data.quantidade);
@@ -89,7 +83,8 @@ $(function () {
 
                     }
                    if(data.carrinho){
-                    $("#carrinho").val(data.carrinho)
+
+                    $("#carrinho").text(data.carrinho)
                     }
                 } else {
                     $("#modal-object").modal("hide");
@@ -101,18 +96,10 @@ $(function () {
         return false;
     };
 
-    /* Binding */
 
-    // Create object
     $(".js-create-object").click(loadForm);
     $("#modal-object").on("submit", ".js-object-create-form", saveForm);
 
-    // Update object
-    $("#object-table").on("click", ".js-update-object", loadForm);
-    $("#modal-object").on("submit", ".js-object-update-form", saveForm);
 
-    // Delete object
-    $("#object-table").on("click", ".js-delete-object", loadForm);
-    $("#modal-object").on("submit", ".js-object-delete-form", saveForm);
 
 });

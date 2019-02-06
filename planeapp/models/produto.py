@@ -12,7 +12,7 @@ class Produto(models.Model):
 
     nome = models.CharField(max_length=100)
     preco_unit = models.DecimalField(max_digits=10,decimal_places=2)
-    multiplo = models.PositiveIntegerField(default=1,blank=True)
+    multiplo = models.PositiveIntegerField(default=1)
     imagem = models.ImageField(upload_to="produto",blank=True)
 
     class Meta:
@@ -22,7 +22,7 @@ class Produto(models.Model):
         '''
         :return: Define a url de retorno após executar os metodos de Create ou Update
         '''
-        return reverse_lazy('produto-detail', kwargs={'pk': self.pk})
+        return reverse_lazy('produto-list')
 
     def __str__(self):
         '''

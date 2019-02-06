@@ -39,7 +39,7 @@ class ProdutoCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(
             cleaned_data,
-            name=self.object.title,
+            name=self.object.nome,
         )
 
 
@@ -56,7 +56,7 @@ class ProdutoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(
             cleaned_data,
-            name=self.object.username,
+            name=self.object.nome,
         )
 
 
