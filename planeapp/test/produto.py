@@ -11,7 +11,7 @@ from planeapp.models.cliente import Cliente
 from planeapp.models.produto import Produto
 
 
-class TestPedido(TestCase):
+class TestProduto(TestCase):
     def setUp(self):
         # activate('pt-br')
         self.user = Cliente(
@@ -28,38 +28,35 @@ class TestPedido(TestCase):
 
     def test_error_add_produto(self):
         self.client.login(username='admin', password='teste')
-        response = self.client.post(reverse('pedido-produto-add',kwargs={"id":self.produto.id}),
+        response = self.client.post(reverse('produto-add'),
                                     {})
         self.assertContains(response, "This field is required.")
 
     def test_view_add_produto(self):
         self.client.login(username='admin', password='teste')
-        response = self.client.post(reverse('pedido-produto-add',kwargs={"id":self.produto.id}),
-                                    {'quantidade': '1',
+        response = self.client.post(reverse('produto-add'),
+                                    {'nome': 'milenium',
                                      'preco_unit': '10',
                                      }, follow=True)
         # print(response)
-        self.assertContains(response, ' "form_is_valid": false')
+        self.assertContains(response,  "This field is required.")
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(reverse('pedido-produto-add', kwargs={"id": self.produto.id}),
-                                {'quantidade': '3',
+        response = self.client.post(reverse('produto-add'),
+                                {'nome': '3',
                                  'preco_unit': '10',
+                                 'multiplo': '10',
                                  }, follow=True)
 
-        self.assertContains(response, ' "form_is_valid": false')
+        self.assertContains(response, 'Produto 3 adicionado com sucesso')
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.post(reverse('pedido-produto-add', kwargs={"id": self.produto.id}),
-                                    {'quantidade': '3',
+        response = self.client.post(reverse('produto-add'),
+                                    {'nome': 'milenium',
                                      'preco_unit': '100',
                                      }, follow=True)
-
+        self.assertContains(response, "This field is required.")
         self.assertEqual(response.status_code, 200)
 
-    def test_carrinho(self):
-        response = self.client.get(reverse('carrinho-list'),
-                                    {}, follow=True)
 
-        self.assertEqual(response.status_code, 200)
 

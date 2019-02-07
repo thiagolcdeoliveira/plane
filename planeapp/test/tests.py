@@ -6,4 +6,6 @@ from django.test import TestCase
 # Create your tests here.
 
 from pedido import *
+from cliente import *
+from produto import *
 
